@@ -10,7 +10,8 @@ export default StyleSheet.create({
         alignItems:'center',
         width:'100%',
         paddingHorizontal:moderateScale(30),
-        marginTop:70,
+        marginTop:moderateScale(50),
+        paddingBottom:moderateScale(20)
     },
     welcomB:{
         fontSize:moderateScale(30),

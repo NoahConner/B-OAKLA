@@ -9,14 +9,17 @@ import PreLogin from './src/screens/Pre-login/pre-login';
 import Login from './src/screens/Login/Login';
 import SignUp from './src/screens/Sign-up/SignUp';
 import ForgotPassword from './src/screens/Forgot-password/forgotScreen';
+import NewPassword from './src/screens/New-Password/NewPasswordScreen';
+import VerifyEmail from './src/screens/Verify-Email/VerifyEmail';
 
+import Home from './src/screens/Home/HomeScreen'
 
 const App = (navigation) => {
 
-  const [userToken, setuserToken] = useState(null);
+  const [userToken, setuserToken] = useState('null');
   const userSettings = {
     userToken:userToken,
-    userSettings
+    setuserToken
   }
 
   return(
@@ -30,9 +33,12 @@ const App = (navigation) => {
                 <Stack.Screen name="Login" component={Login} />
                 <Stack.Screen name="SignUp" component={SignUp} />
                 <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+                <Stack.Screen name="NewPassword" component={NewPassword} />
+                <Stack.Screen name="VerifyEmail" component={VerifyEmail} />
               </>
             ) : (
               <>
+               <Stack.Screen name="Home" component={Home} />
               </>
             )
           }

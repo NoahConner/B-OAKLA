@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Image, View, Text, ScrollView, TouchableOpacity, SafeAreaView, TextInput } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import s from './SignUpStyle';
+import LoginHeader from '../../components/headers/LoginHeader'
 
 const SignUp = ({navigation}) => {
     return(
         <SafeAreaView style={s.container}>
+            <LoginHeader navigation={navigation} backbutton={true} sharebutton={false} logo={true} pagename={false} />
             <KeyboardAwareScrollView keyboardShouldPersistTaps="handled">
                 <View style={s.main}>
 

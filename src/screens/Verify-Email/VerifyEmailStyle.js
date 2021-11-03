@@ -10,13 +10,13 @@ export default StyleSheet.create({
         alignItems:'center',
         width:'100%',
         paddingHorizontal:moderateScale(30),
-        marginTop:moderateScale(50),
-        paddingBottom:moderateScale(15)
+        marginTop:40,
     },
     welcomB:{
         fontSize:moderateScale(30),
         color:'#000',
-        fontFamily:'Poppins-Medium'
+        fontFamily:'Poppins-Medium',
+        textAlign:'center'
     },
     signInP:{
         fontSize:moderateScale(12),
@@ -27,7 +27,7 @@ export default StyleSheet.create({
     },
     inpMain:{
         width:'100%',
-        marginTop:moderateScale(50)
+        marginTop:moderateScale(40)
     },
     input:{
         backgroundColor:'#f1f1f1',
@@ -38,18 +38,11 @@ export default StyleSheet.create({
         paddingVertical:moderateScale(15),
         fontFamily:'Poppins-Regular',
     },
-    forgotDiv:{
-        color:'#29ABE2',
-        fontFamily:'Poppins-Regular',
-        fontSize:moderateScale(14),
-        textAlign:'right',
-        marginTop:moderateScale(10),
-    },
     signInBtn:{
         backgroundColor:'#000',
         padding:moderateScale(16),
         borderRadius:50,
-        marginTop:moderateScale(35),
+        marginTop:moderateScale(15),
     },
     signInBtnTxt:{
         color:'#B48618',
@@ -58,22 +51,26 @@ export default StyleSheet.create({
         textAlign:'center'
     },
     pleaseSignView:{
-        flexDirection:'row',
+        // flexDirection:'row',
         justifyContent:'center',
-        marginTop:moderateScale(20)
+        marginTop:moderateScale(20),
+        textAlign:'center',
+        alignItems:'center'
     },
     pleaseSignS:{
         color:'#29ABE2',
         fontFamily:'Poppins-Medium',
-        // marginLeft:moderateScale(5)
+        marginTop:moderateScale(5),
+        alignItems:'center'
     },
-    termsAgree:{
-        flexDirection:'row',
-        justifyContent:'flex-start',
-        marginTop:moderateScale(10),
-        flexWrap:'wrap'
+    texterr:{
+        textAlign:'center'
     },
-    f12:{
-        fontSize:13
+    resend:{
+        width:'100%',alignItems:'center'
+    },
+    mt10:{
+        marginTop:moderateScale(30)
     }
+
 });
