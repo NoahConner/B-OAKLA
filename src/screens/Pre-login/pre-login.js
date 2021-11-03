@@ -44,7 +44,7 @@ const PreLogin = ({ navigation }) => {
                                         <Text style={styles.continueTxt}>Continue with Facebook</Text>
                                     </View>
                                 </TouchableOpacity>
-                                <TouchableOpacity style={styles.mt20}>
+                                <TouchableOpacity style={styles.mt20} onPress={() => navigation.navigate('Login') }>
                                     <View style={styles.btns}>
                                         <MailLogo height={moderateScale(22)} width={moderateScale(22)} />
                                         <Text style={styles.continueTxt}>Continue with Mail</Text>

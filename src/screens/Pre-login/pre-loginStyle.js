@@ -19,10 +19,11 @@ export default StyleSheet.create({
         paddingHorizontal:moderateScale(45)
     },
     OakH1:{
-        fontSize:24,
+        fontSize:22,
         textAlign:'center',
-        fontFamily:Font.medium,
-        marginTop:moderateScale(60)
+        fontFamily:'Poppins-Medium',
+        marginTop:moderateScale(60),
+        color:'#000'
     },
     goldColor:{
         color:'#B48618'
@@ -41,7 +42,8 @@ export default StyleSheet.create({
     },
     signInTxt:{
         color:'#808080',
-        marginTop:moderateScale(20)
+        marginTop:moderateScale(20),
+        fontFamily:'Poppins-Regular'
     },
     image: {
         flex: 1,

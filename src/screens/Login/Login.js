@@ -1,16 +1,45 @@
 import React, { useState, useEffect } from 'react';
-import { Image, View, Text, ScrollView, TouchableOpacity, SafeAreaView, TouchableWithoutFeedback, Switch, FlatList, Modal, Pressable, StatusBar, Dimensions } from 'react-native';
+import { Image, View, Text, ScrollView, TouchableOpacity, SafeAreaView, TextInput  } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
-import styles from './LoginStyle';
+import s from './LoginStyle';
 
 const Login = ({navigation}) => {
     return(
-        <SafeAreaView style={styles.container}>
-            <View>
-                <KeyboardAwareScrollView keyboardShouldPersistTaps="handled">
-                    <Text>Hello!</Text>
-                </KeyboardAwareScrollView>
-            </View>
+        <SafeAreaView style={s.container}>
+            <KeyboardAwareScrollView keyboardShouldPersistTaps="handled">
+                <View style={s.main}>
+
+                    <Text style={s.welcomB}>Welcome Back!</Text>
+                    <Text style={s.signInP}>Please sign In to your account</Text>
+
+                    <View style={s.inpMain}>
+                        <TextInput
+                            style={s.input}
+                            placeholder="Email Address"
+                            keyboardType="default"
+                        />
+                        <TextInput secureTextEntry={true} style={s.input}  placeholder="Password" keyboardType="default" />
+                        <TouchableOpacity onPress={()=> navigation.navigate('ForgotPassword')}>
+                            <Text style={s.forgotDiv}>Forgot Password?</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity>
+                            <View style={s.signInBtn}>
+                                <Text style={s.signInBtnTxt}>
+                                    Sign In
+                                </Text>
+                            </View>
+                        </TouchableOpacity>
+
+                        <View style={s.pleaseSignView}>
+                            {/* <Text>New here? Plaase</Text> <TouchableOpacity><Text style={s.pleaseSignS}>Sign Up</Text></TouchableOpacity> */}
+                            <Text>New here? Please</Text>
+                            <TouchableOpacity onPress={() => navigation.navigate('SignUp')}><Text style={s.pleaseSignS}>Sign Up</Text></TouchableOpacity>
+                        </View>
+                    </View>
+
+                </View>        
+            </KeyboardAwareScrollView>
         </SafeAreaView>
     )
 }
