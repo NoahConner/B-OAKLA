@@ -5,15 +5,42 @@ import AppLogo from '../../../assets/svg/applogo.svg'
 import Icon from 'react-native-vector-icons/Ionicons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import s from './O-tabStyle'
+import LinearGradient from 'react-native-linear-gradient';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height
 const SCREEN_WIDTH = Dimensions.get('window').width
 const Users = [
-    { id: "1", uri: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8&w=1000&q=80' },
-    { id: "2", uri: 'https://images.unsplash.com/photo-1532980400857-e8d9d275d858?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9vZCUyMHBob3RvZ3JhcGh5fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80' },
-    { id: "3", uri: 'https://i.pinimg.com/originals/de/68/9f/de689f4606ca47b01db489679afbe6fa.jpg' },
-    { id: "4", uri: 'https://i.pinimg.com/736x/f3/6b/58/f36b5886f63b1131246fae4cc83efac8.jpg' },
-    { id: "5", uri: 'https://cdn.pixabay.com/photo/2016/12/26/17/28/spaghetti-1932466__480.jpg' },
+    { 
+        id: "1",
+        uri: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8&w=1000&q=80',
+        price:'50k',
+        address:'770 West Senna Ave. Spiro, OK 74959 3 bd, 2 bath, 1360 sqft'
+    },
+    { 
+        id: "2", 
+        uri: 'https://images.unsplash.com/photo-1532980400857-e8d9d275d858?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9vZCUyMHBob3RvZ3JhcGh5fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80',
+        price:'30k',
+        address:'770 West Senna Ave. Spiro, OK 74959'
+    },
+    { 
+        id: "3", 
+        uri: 'https://i.pinimg.com/originals/de/68/9f/de689f4606ca47b01db489679afbe6fa.jpg',
+        price:'90k',
+        address:'770 West Senna Ave. Spiro, OK 74959 3 bd, 2 bath, 1360 sqft'
+    },
+    { 
+        id: "4", 
+        uri: 'https://i.pinimg.com/736x/f3/6b/58/f36b5886f63b1131246fae4cc83efac8.jpg',
+        price:'10k',
+        address:'770 West Senna Ave. Spiro, OK 74959 3 bd, 2 bath, 1360 sqft'
+    },
+    { 
+        id: "5", 
+        uri: 'https://cdn.pixabay.com/photo/2016/12/26/17/28/spaghetti-1932466__480.jpg', 
+        price:'25k',
+        address:'770 West Senna Ave. Spiro, OK 74959 3 bd, 2 bath, 1360 sqft'
+    },
 ]
 
 export default class OTAB extends React.Component {
@@ -28,7 +55,7 @@ export default class OTAB extends React.Component {
 
         this.rotate = this.position.x.interpolate({
             inputRange: [-SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2],
-            outputRange: ['-30deg', '0deg', '15deg'],
+            outputRange: ['-15deg', '0deg', '15deg'],
             extrapolate: 'clamp'
         })
 
@@ -128,6 +155,21 @@ export default class OTAB extends React.Component {
                             {/* <Text style={{ borderWidth: 1, borderColor: 'red', color: 'red', fontSize: 32, fontWeight: '800', padding: 10 }}>NOPE</Text> */}
                         </Animated.View>
 
+                        <Animated.View style={s.cardDetails}>
+                            <LinearGradient start={{x: 1, y: 0}} end={{x: 1, y: 1}} colors={['transparent', 'transparent', '#000']} style={{height:'100%',borderRadius:20}}>
+                                <View style={s.AddView}>
+                                    <Text style={s.price}>${item.price}</Text>
+                                    <Text style={s.address}>{item.address}</Text>
+                                </View>
+                            </LinearGradient>
+                        </Animated.View>
+
+                        <Animated.View style={s.hearted}>
+                            <TouchableOpacity style={s.heret}>
+                                <Icon name="heart-outline" size={moderateScale(25)} color="#B48618" />
+                            </TouchableOpacity>
+                        </Animated.View>
+
                         <Image
                             style={{ flex: 1, height: null, width: null, resizeMode: 'cover', borderRadius: moderateScale(20) }}
                             source={{ uri: item.uri }} />
@@ -154,6 +196,20 @@ export default class OTAB extends React.Component {
                             {/* <Text style={{ borderWidth: 1, borderColor: 'red', color: 'red', fontSize: 32, fontWeight: '800', padding: 10 }}>NOPE</Text> */}
 
                         </Animated.View>
+                        <Animated.View style={s.cardDetails}>
+                            <LinearGradient start={{x: 1, y: 0}} end={{x: 1, y: 1}} colors={['transparent', 'transparent', '#000']} style={{height:'100%',borderRadius:20}}>
+                                <View style={s.AddView}>
+                                    <Text style={s.price}>${item.price}</Text>
+                                    <Text style={s.address}>{item.address}</Text>
+                                </View>
+                            </LinearGradient>
+                        </Animated.View>
+
+                        <Animated.View style={s.hearted}>
+                            <TouchableOpacity style={s.heret}>
+                                <Icon name="heart-outline" size={moderateScale(25)} color="#B48618" />
+                            </TouchableOpacity>
+                        </Animated.View>
 
                         <Image
                             style={{ flex: 1, height: null, width: null, resizeMode: 'cover', borderRadius: moderateScale(20) }}
@@ -169,7 +225,7 @@ export default class OTAB extends React.Component {
         return (
             <SafeAreaView>
                 <View style={{ flex: 1 }}>
-                    <View style={{ height: moderateScale(70), flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: moderateScale(20) }}>
+                    <View style={s.logoHeader}>
                         <View>
                             <AppLogo width={moderateScale(110)} height={moderateScale(60)} />
                         </View>
