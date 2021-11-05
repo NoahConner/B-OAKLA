@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, Image, Animated, PanResponder } from 'react-native';
+import { ActivityIndicator, Text, View, Dimensions, Animated, PanResponder, Modal, Pressable } from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
 import AppLogo from '../../../assets/svg/applogo.svg'
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -7,39 +7,42 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import s from './O-tabStyle'
 import LinearGradient from 'react-native-linear-gradient';
+import { Image } from 'react-native-elements';
+
+import Filters from '../../../components/Filters/Filters'
 
 const SCREEN_HEIGHT = Dimensions.get('window').height
 const SCREEN_WIDTH = Dimensions.get('window').width
 const Users = [
-    { 
+    {
         id: "1",
         uri: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8&w=1000&q=80',
-        price:'50k',
-        address:'770 West Senna Ave. Spiro, OK 74959 3 bd, 2 bath, 1360 sqft'
+        price: '50k',
+        address: '770 West Senna Ave. Spiro, OK 74959 3 bd, 2 bath, 1360 sqft'
     },
-    { 
-        id: "2", 
+    {
+        id: "2",
         uri: 'https://images.unsplash.com/photo-1532980400857-e8d9d275d858?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9vZCUyMHBob3RvZ3JhcGh5fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80',
-        price:'30k',
-        address:'770 West Senna Ave. Spiro, OK 74959'
+        price: '30k',
+        address: '770 West Senna Ave. Spiro, OK 74959'
     },
-    { 
-        id: "3", 
+    {
+        id: "3",
         uri: 'https://i.pinimg.com/originals/de/68/9f/de689f4606ca47b01db489679afbe6fa.jpg',
-        price:'90k',
-        address:'770 West Senna Ave. Spiro, OK 74959 3 bd, 2 bath, 1360 sqft'
+        price: '90k',
+        address: '770 West Senna Ave. Spiro, OK 74959 3 bd, 2 bath, 1360 sqft'
     },
-    { 
-        id: "4", 
+    {
+        id: "4",
         uri: 'https://i.pinimg.com/736x/f3/6b/58/f36b5886f63b1131246fae4cc83efac8.jpg',
-        price:'10k',
-        address:'770 West Senna Ave. Spiro, OK 74959 3 bd, 2 bath, 1360 sqft'
+        price: '10k',
+        address: '770 West Senna Ave. Spiro, OK 74959 3 bd, 2 bath, 1360 sqft'
     },
-    { 
-        id: "5", 
-        uri: 'https://cdn.pixabay.com/photo/2016/12/26/17/28/spaghetti-1932466__480.jpg', 
-        price:'25k',
-        address:'770 West Senna Ave. Spiro, OK 74959 3 bd, 2 bath, 1360 sqft'
+    {
+        id: "5",
+        uri: 'https://cdn.pixabay.com/photo/2016/12/26/17/28/spaghetti-1932466__480.jpg',
+        price: '25k',
+        address: '770 West Senna Ave. Spiro, OK 74959 3 bd, 2 bath, 1360 sqft'
     },
 ]
 
@@ -50,7 +53,8 @@ export default class OTAB extends React.Component {
 
         this.position = new Animated.ValueXY()
         this.state = {
-            currentIndex: 0
+            currentIndex: 0,
+            modalVisible: true
         }
 
         this.rotate = this.position.x.interpolate({
@@ -89,8 +93,12 @@ export default class OTAB extends React.Component {
             extrapolate: 'clamp'
 
         })
-
     }
+
+    setModalVisible = (visible) => {
+        this.setState({ modalVisible: visible });
+      }
+
     UNSAFE_componentWillMount() {
         this.PanResponder = PanResponder.create({
 
@@ -147,16 +155,14 @@ export default class OTAB extends React.Component {
                         {...this.PanResponder.panHandlers}
                         key={item.id} style={[this.rotateAndTranslate, { height: SCREEN_HEIGHT - 140, width: SCREEN_WIDTH, padding: moderateScale(20), position: 'absolute' }]}>
                         <Animated.View style={{ opacity: this.likeOpacity, position: 'absolute', top: moderateScale(20), left: moderateScale(20), zIndex: 1000, backgroundColor: '#00800052', height: '100%', width: '100%', borderRadius: moderateScale(20) }}>
-                            {/* <Text style={{ borderWidth: 1, borderColor: 'green', color: 'green', fontSize: 32, fontWeight: '800', padding: 10 }}>LIKE</Text> */}
-
                         </Animated.View>
 
                         <Animated.View style={{ opacity: this.dislikeOpacity, position: 'absolute', top: moderateScale(20), left: moderateScale(20), zIndex: 1000, backgroundColor: '#ff000052', height: '100%', width: '100%', borderRadius: moderateScale(20) }}>
-                            {/* <Text style={{ borderWidth: 1, borderColor: 'red', color: 'red', fontSize: 32, fontWeight: '800', padding: 10 }}>NOPE</Text> */}
+
                         </Animated.View>
 
                         <Animated.View style={s.cardDetails}>
-                            <LinearGradient start={{x: 1, y: 0}} end={{x: 1, y: 1}} colors={['transparent', 'transparent', '#000']} style={{height:'100%',borderRadius:20}}>
+                            <LinearGradient start={{ x: 1, y: 0 }} end={{ x: 1, y: 1 }} colors={['transparent', 'transparent', '#000']} style={{ height: '100%', borderRadius: 20 }}>
                                 <View style={s.AddView}>
                                     <Text style={s.price}>${item.price}</Text>
                                     <Text style={s.address}>{item.address}</Text>
@@ -170,9 +176,15 @@ export default class OTAB extends React.Component {
                             </TouchableOpacity>
                         </Animated.View>
 
+                        {/* <Animated.View style={s.touch}>
+                            <TouchableOpacity style={s.touchDiv}></TouchableOpacity>
+                        </Animated.View> */}
+
                         <Image
-                            style={{ flex: 1, height: null, width: null, resizeMode: 'cover', borderRadius: moderateScale(20) }}
-                            source={{ uri: item.uri }} />
+                            source={{ uri: item.uri }}
+                            style={{ height: '100%', width: '100%', resizeMode: 'cover', borderRadius: moderateScale(20) }}
+                            PlaceholderContent={<ActivityIndicator />}
+                        />
 
                     </Animated.View>
                 )
@@ -181,23 +193,17 @@ export default class OTAB extends React.Component {
                 return (
                     <Animated.View
 
-                        key={item.id} 
+                        key={item.id}
                         style={[{
                             opacity: this.nextCardOpacity,
                             transform: [{ scale: this.nextCardScale }],
                             height: SCREEN_HEIGHT - 140, width: SCREEN_WIDTH, padding: moderateScale(20), position: 'absolute'
                         }]}>
-                        <Animated.View style={{ opacity: 0, position: 'absolute', top: moderateScale(20), left: moderateScale(20), zIndex: 1000, backgroundColor: '#00800052', height: '100%', width: '100%', borderRadius: moderateScale(20) }}>
-                            {/* <Text style={{ borderWidth: 1, borderColor: 'green', color: 'green', fontSize: 32, fontWeight: '800', padding: 10 }}>LIKE</Text> */}
+                        <Animated.View style={{ opacity: 0, position: 'absolute', top: moderateScale(20), left: moderateScale(20), zIndex: 1000, backgroundColor: '#00800052', height: '100%', width: '100%', borderRadius: moderateScale(20) }}></Animated.View>
 
-                        </Animated.View>
-
-                        <Animated.View style={{ opacity: 0, position: 'absolute', top: moderateScale(20), left: moderateScale(20), zIndex: 1000, backgroundColor: '#ff000052', height: '100%', width: '100%', borderRadius: moderateScale(20) }}>
-                            {/* <Text style={{ borderWidth: 1, borderColor: 'red', color: 'red', fontSize: 32, fontWeight: '800', padding: 10 }}>NOPE</Text> */}
-
-                        </Animated.View>
+                        <Animated.View style={{ opacity: 0, position: 'absolute', top: moderateScale(20), left: moderateScale(20), zIndex: 1000, backgroundColor: '#ff000052', height: '100%', width: '100%', borderRadius: moderateScale(20) }}></Animated.View>
                         <Animated.View style={s.cardDetails}>
-                            <LinearGradient start={{x: 1, y: 0}} end={{x: 1, y: 1}} colors={['transparent', 'transparent', '#000']} style={{height:'100%',borderRadius:20}}>
+                            <LinearGradient start={{ x: 1, y: 0 }} end={{ x: 1, y: 1 }} colors={['transparent', 'transparent', '#000']} style={{ height: '100%', borderRadius: 20 }}>
                                 <View style={s.AddView}>
                                     <Text style={s.price}>${item.price}</Text>
                                     <Text style={s.address}>{item.address}</Text>
@@ -212,8 +218,10 @@ export default class OTAB extends React.Component {
                         </Animated.View>
 
                         <Image
-                            style={{ flex: 1, height: null, width: null, resizeMode: 'cover', borderRadius: moderateScale(20) }}
-                            source={{ uri: item.uri }} />
+                            source={{ uri: item.uri }}
+                            style={{ height: '100%', width: '100%', resizeMode: 'cover', borderRadius: moderateScale(20) }}
+                            PlaceholderContent={<ActivityIndicator />}
+                        />
 
                     </Animated.View>
                 )
@@ -222,6 +230,7 @@ export default class OTAB extends React.Component {
     }
 
     render() {
+
         return (
             <SafeAreaView>
                 <View style={{ flex: 1 }}>
@@ -236,6 +245,20 @@ export default class OTAB extends React.Component {
                     <View style={{ flex: 1 }}>
                         {this.renderUsers()}
                     </View>
+                </View>
+
+                <View style={s.centeredView}>
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={this.state.modalVisible}
+                        onRequestClose={() => {
+                            Alert.alert("Modal has been closed.");
+                            this.setModalVisible(!this.state.modalVisible);
+                        }}
+                    >
+                        <Filters/>
+                    </Modal>
                 </View>
             </SafeAreaView>
 

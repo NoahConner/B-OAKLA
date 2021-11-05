@@ -6,4 +6,14 @@ export default StyleSheet.create({
         flex: moderateScale(1),
         backgroundColor:'#fff',
     },
+    borrderd:{
+        borderColor:'#B48618',
+    },
+    viewr:{
+        height:'100%',
+        alignItems:'center',
+        justifyContent:'center',
+        width:moderateScale(44),
+        borderTopWidth:3
+    }
 });

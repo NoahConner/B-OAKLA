@@ -12,6 +12,9 @@ export default StyleSheet.create({
         alignItems: 'center', 
         justifyContent: 'space-between', 
         paddingHorizontal: moderateScale(20),
+        // backgroundColor:'#00205b',
+        marginBottom:moderateScale(-10),
+        marginTop:moderateScale(10)
     },
     cardDetails:{
         position: 'absolute',
@@ -51,5 +54,18 @@ export default StyleSheet.create({
         alignItems:'center',
         justifyContent:'center',
         paddingTop:3
-    }
+    },
+
+    touchDiv:{
+        // backgroundColor:'#00205b',
+        backgroundColor: '#00800052',
+        height:'100%'
+    },
+
+
+    centeredView: {
+        flex: 1,
+        zIndex:10000
+      },
+      
 });

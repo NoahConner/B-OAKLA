@@ -49,9 +49,7 @@ const Home = ({ navigation }) => {
                     {
                         tabBarIcon: ({ focused }) => (
 
-                            <View style={{
-                                // top:10
-                            }}>
+                            <View style={[focused ? s.borrderd : null,s.viewr]}>
 
                                 <OaklaO height={moderateScale(30)} width={moderateScale(20)} fill={focused ? '#B48618' : '#fff'} />
 
@@ -67,9 +65,7 @@ const Home = ({ navigation }) => {
                     {
                         tabBarIcon: ({ focused }) => (
 
-                            <View style={{
-                                // top:10
-                            }}>
+                            <View style={[focused ? s.borrderd : null,s.viewr]}>
 
                                 <Magnifine height={moderateScale(40)} width={moderateScale(23)} fill={focused ? '#B48618' : '#fff'} />
 
@@ -85,9 +81,7 @@ const Home = ({ navigation }) => {
                     {
                         tabBarIcon: ({ focused }) => (
 
-                            <View style={{
-                                // top:10
-                            }}>
+                            <View style={[focused ? s.borrderd : null,s.viewr]}>
 
                                 <LikeDislikeIcon height={moderateScale(30)} width={moderateScale(27)} fill={focused ? '#B48618' : '#fff'} />
 
@@ -103,9 +97,7 @@ const Home = ({ navigation }) => {
                     {
                         tabBarIcon: ({ focused }) => (
 
-                            <View style={{
-                                // top:10
-                            }}>
+                            <View style={[focused ? s.borrderd : null,s.viewr]}>
 
                                 <Heart height={moderateScale(30)} width={moderateScale(25)} fill={focused ? '#B48618' : '#fff'} />
 
@@ -122,12 +114,7 @@ const Home = ({ navigation }) => {
                     {
                         tabBarIcon: ({ focused }) => (
 
-                            <View style={{
-                                // top:10
-                                borderWidth: 3,
-                                borderColor: focused ? '#B48618' : '#fff',
-                                borderRadius: moderateScale(50)
-                            }}>
+                            <View style={[focused ? s.borrderd : null,s.viewr]}>
                                 <Men height={moderateScale(27)} width={moderateScale(27)} />
                             </View>
 
