@@ -17,9 +17,12 @@ import Home from './src/screens/Home/HomeScreen'
 const App = (navigation) => {
 
   const [userToken, setuserToken] = useState('null');
+  const [FilterShow, setFilterShow] = useState(true);
   const userSettings = {
     userToken:userToken,
-    setuserToken
+    FilterShow:FilterShow,
+    setuserToken,
+    setFilterShow
   }
 
   return(

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { ActivityIndicator, Text, View, Dimensions, Animated, PanResponder, Modal, Pressable } from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
 import AppLogo from '../../../assets/svg/applogo.svg'
@@ -10,6 +10,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { Image } from 'react-native-elements';
 
 import Filters from '../../../components/Filters/Filters'
+import AppContext from '../../../components/Appcontext/contextApi';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height
 const SCREEN_WIDTH = Dimensions.get('window').width
@@ -48,6 +49,8 @@ const Users = [
 
 export default class OTAB extends React.Component {
 
+    
+    
     constructor() {
         super()
 
@@ -229,8 +232,11 @@ export default class OTAB extends React.Component {
         }).reverse()
     }
 
-    render() {
+    
+    static contextType = AppContext;
 
+    render() {
+        // console.log(this.context.FilterShow)
         return (
             <SafeAreaView>
                 <View style={{ flex: 1 }}>
@@ -251,10 +257,10 @@ export default class OTAB extends React.Component {
                     <Modal
                         animationType="slide"
                         transparent={true}
-                        visible={this.state.modalVisible}
+                        visible={this.context.FilterShow}
                         onRequestClose={() => {
                             Alert.alert("Modal has been closed.");
-                            this.setModalVisible(!this.state.modalVisible);
+                            this.setModalVisible(!this.context.FilterShow);
                         }}
                     >
                         <Filters/>

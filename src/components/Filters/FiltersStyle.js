@@ -6,7 +6,8 @@ export default StyleSheet.create({
     container: {
         flex: moderateScale(1),
         backgroundColor: '#fff',
-        padding: moderateScale(20)
+        padding: moderateScale(20),
+        position:'relative'
     },
     mainHeader: {
         flexDirection: 'row',
@@ -124,5 +125,60 @@ export default StyleSheet.create({
     },
     gold:{
         backgroundColor:'#B48618'
-    }
+    },
+    picker:{
+        backgroundColor:'#f1f1f1',
+        marginTop:moderateScale(10),
+        borderRadius:moderateScale(50),
+        fontFamily:'Poppins-Medium'
+    },
+    mustHave:{
+        color:'#666',
+        fontSize:moderateScale(15),
+        marginTop:moderateScale(-5),
+    },
+    mt30:{
+        marginTop:moderateScale(30)
+    },
+    mt20:{
+        marginTop:moderateScale(20)
+    },
+    mInp2:{
+        position:'relative',
+        width:'44%',
+    },
+    to:{
+        color:'#666',
+        fontFamily:'Poppins-Regular',
+        fontSize:moderateScale(16)
+    },
+    mt0:{
+        marginTop:moderateScale(0)
+    },
+    View:{
+        backgroundColor:'#000',
+        paddingVertical:moderateScale(15),
+        alignItems:'center',
+        borderRadius:moderateScale(50),
+        width:'72%'
+    },
+    tct:{
+        color:'#fff',
+        fontSize:moderateScale(16),
+        fontFamily:'Poppins-Medium',
+        lineHeight:moderateScale(24)
+    },
+    Skip:{
+        backgroundColor:'#f1f1f1',
+        paddingVertical:moderateScale(12),
+        alignItems:'center',
+        borderRadius:moderateScale(50),
+        width:'25%'
+    },
+    tcts:{
+        color:'#000',
+        fontSize:moderateScale(14),
+        fontFamily:'Poppins-Medium',
+        lineHeight:moderateScale(20)
+    },
 })

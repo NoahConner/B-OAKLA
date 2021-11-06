@@ -60,7 +60,7 @@ const LoginHeader = ({ navigation, backbutton, sharebutton, logo, pagename }) =>
             {
                 pagename != '' ? (
                     <>
-                        <View style={s.nameHEader}>
+                        <View style={[s.nameHEader, !backbutton ? s.leftMin : null]}>
                             <Text style={s.nmaeTxt}>{pagename}</Text>
                         </View>
                     </>

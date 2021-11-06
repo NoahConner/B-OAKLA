@@ -32,5 +32,8 @@ export default StyleSheet.create({
         fontSize:moderateScale(16),
         fontFamily:'Poppins-Medium',
         marginTop:3
+    },
+    leftMin:{
+        left:moderateScale(20),
     }
 });
