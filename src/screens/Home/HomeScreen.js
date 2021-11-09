@@ -6,12 +6,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { moderateScale } from 'react-native-size-matters';
+import { createStackNavigator,HeaderStyleInterpolators } from '@react-navigation/stack';
 
 import LikeDislike from './LikeDislikeScreen/LikeDislikeScreenTab'
 import OTAB from './O-tab/O-tabScreen'
 import Profile from './ProfileScreen/ProfileScreenTab'
 import Search from './SearchScreen/SearchScreenTab'
 import Wishlist from './WishlistScreeen/WishlistScreeen'
+import ProfileEdit from './edit-profile/EditProfile'
 
 import OaklaO from '../../assets/svg/oaklaO.svg'
 import Magnifine from '../../assets/svg/magnifine.svg'
@@ -19,7 +21,18 @@ import LikeDislikeIcon from '../../assets/svg/LIkeDislike.svg'
 import Heart from '../../assets/svg/heart.svg'
 import Men from '../../assets/svg/men.svg'
 
+
 const Tab = createBottomTabNavigator();
+
+const stack = () => {
+    return(
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="ProfileScreen" component={Profile} />
+            <Stack.Screen name="ProfileEdit" component={ProfileEdit} />
+        </Stack.Navigator>
+    )
+}
+
 const Home = ({ navigation }) => {
     return (
         <Tab.Navigator
@@ -107,7 +120,7 @@ const Home = ({ navigation }) => {
                     }
                 }
             />
-            <Tab.Screen name="Profile" component={Profile}
+            <Tab.Screen name="Profile" component={stack}
 
                 navigation={navigation}
                 options={
@@ -125,5 +138,5 @@ const Home = ({ navigation }) => {
     )
 }
 
-
+const Stack = createStackNavigator();
 export default Home;

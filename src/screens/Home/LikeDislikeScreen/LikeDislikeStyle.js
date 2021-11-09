@@ -34,7 +34,8 @@ export default StyleSheet.create({
         backgroundColor:'#f1f1f1',
         borderBottomEndRadius:moderateScale(10),
         borderBottomStartRadius:moderateScale(10),
-        marginBottom:moderateScale(15)
+        marginBottom:moderateScale(15),
+        position:'relative'
     },
     image:{
         backgroundColor:'#000',
@@ -73,5 +74,26 @@ export default StyleSheet.create({
         // backgroundColor:'#000',
         width:moderateScale(200),
         position:'relative'
-    }
+    },
+    mr20:{
+        left:moderateScale(100)
+    },
+    mr30:{
+        left:moderateScale(120)
+    },
+    hearted:{
+        position:'absolute',
+        top:moderateScale(8),
+        right:moderateScale(8),
+        zIndex:999
+    },
+    heret:{
+        backgroundColor:'#ffffff50',
+        borderRadius:moderateScale(50),
+        height:moderateScale(40),
+        width:moderateScale(40),
+        alignItems:'center',
+        justifyContent:'center',
+        paddingTop:3
+    },
 });

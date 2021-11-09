@@ -53,7 +53,7 @@ const Profile = ({ navigation }) => {
                         </View>
 
                         <View style={[s.mb30]}>
-                            <TouchableOpacity style={s.editbtn}>
+                            <TouchableOpacity style={s.editbtn} onPress={() => navigation.navigate('ProfileEdit')}>
                                 <Text style={s.nono}>Edit Profile</Text>
                             </TouchableOpacity>
                         </View>
@@ -64,7 +64,7 @@ const Profile = ({ navigation }) => {
                             <Text style={[s.pno,s.mt20,s.mb30]}>About the App</Text>
                         </View>
 
-                        <TouchableOpacity style={[s.dflex,s.mb30]}>
+                        <TouchableOpacity style={[s.dflex,s.mb30]} onPress={() => navigation.navigate('TermsPage')}>
                             <View style={s.icon}>
                                 <TermsIcon height={30} width={30} />
                             </View>
@@ -72,7 +72,7 @@ const Profile = ({ navigation }) => {
                                 <Text style={s.nono}>Terms of Use</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={[s.dflex,s.mb30]}>
+                        <TouchableOpacity style={[s.dflex,s.mb30]} onPress={() => navigation.navigate('PrivacyPage')}>
                             <View style={s.icon}>
                                 <PrivacyIcon height={30} width={30} />
                             </View>
@@ -80,7 +80,7 @@ const Profile = ({ navigation }) => {
                                 <Text style={s.nono}>Privacy Policy</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={[s.dflex,s.mb30]}>
+                        <TouchableOpacity style={[s.dflex,s.mb30]} onPress={() => navigation.navigate('ForgotPassword')}>
                             <View style={s.icon}>
                                 <LockIcon height={30} width={30} />
                             </View>

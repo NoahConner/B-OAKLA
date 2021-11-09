@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import s from './LikeDislikeStyle';
 import Icon from 'react-native-vector-icons/Octicons';
 import Icons from 'react-native-vector-icons/FontAwesome5';
+import Iconicons from 'react-native-vector-icons/Ionicons';
 import { moderateScale } from 'react-native-size-matters';
 import { Image } from 'react-native-elements';
 import RNPickerSelect from 'react-native-picker-select';
@@ -63,9 +64,9 @@ const LikeDislike = ({ navigation }) => {
                     </View>
 
                     <View style={[s.dflex, s.mt20]}>
-                        <View style={[s.dflex,s.bhj]}>
+                        <View style={[s.dflex, s.bhj]}>
                             <Text style={s.likeCount}>25 {tripType == 0 ? 'liked' : tripType == 1 ? 'Disliked' : 'Contaced'}</Text>
-                            <View style={s.picker}>
+                            <View style={[s.picker, tripType == 0 ? null : tripType == 1 ? s.mr20 : s.mr30]}>
                                 <RNPickerSelect
                                     onValueChange={(value) => console.log(value)}
                                     items={[
@@ -108,6 +109,12 @@ const LikeDislike = ({ navigation }) => {
                                             </View>
                                             <TouchableOpacity>
                                                 <Icons name="share-alt" color="#000" style={{ fontSize: moderateScale(24) }} />
+                                            </TouchableOpacity>
+                                        </View>
+
+                                        <View style={s.hearted}>
+                                            <TouchableOpacity style={s.heret}>
+                                                <Iconicons name="heart-outline" size={moderateScale(25)} color="#B48618" />
                                             </TouchableOpacity>
                                         </View>
                                     </TouchableOpacity>
