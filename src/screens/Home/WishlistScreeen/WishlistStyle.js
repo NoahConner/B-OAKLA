@@ -1,11 +1,16 @@
 import { StyleSheet } from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
+import { Dimensions } from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 export default StyleSheet.create({
     container: {
         flex: moderateScale(1),
         backgroundColor:'#fff',
-        paddingHorizontal:moderateScale(20)
+        paddingHorizontal:moderateScale(20),
+        // height:windowHeight
     },
     radioBox: {
         marginTop: moderateScale(20),
@@ -68,7 +73,7 @@ export default StyleSheet.create({
         position:'absolute',
         backgroundColor:'#f1f1f1',
         width:130,
-        left:moderateScale(70)
+        left:moderateScale(90)
     },
     bhj:{
         // backgroundColor:'#000',
@@ -101,5 +106,62 @@ export default StyleSheet.create({
         paddingHorizontal:moderateScale(18),
         paddingVertical:moderateScale(10),
         borderRadius:moderateScale(50)
-    }
+    },
+    mapD:{
+        // backgroundColor:'#00205b',
+        width:'100%',
+        height:windowHeight,
+    },
+    mapTrue:{
+        zIndex:1,
+        paddingBottom:moderateScale(10)
+    },
+      marker: {
+        marginLeft: 46,
+        marginTop: 33,
+        fontWeight: 'bold',
+      },
+
+      containerMap: {
+        ...StyleSheet.absoluteFillObject,
+        height: 400,
+        width: 400,
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+      },
+      map: {
+        ...StyleSheet.absoluteFillObject,
+      },
+      listing:{
+          backgroundColor:'#fff',
+          width:'100%',
+          height:windowHeight,
+          position:'absolute',
+          zIndex:-1,
+          paddingTop:moderateScale(80),
+          paddingBottom:moderateScale(75),
+        //   top:moderateScale(80),
+      },
+      segMn:{
+          zIndex:1
+      },
+      listBox:{
+        borderTopWidth:0.7,
+        borderBottomWidth:0.7,
+        borderColor:'lightgrey',
+        width:'100%',
+        paddingVertical:moderateScale(20),
+        paddingHorizontal:moderateScale(20),
+          
+        //   backgroundColor:'#000'
+      },
+      flexStart:{
+        justifyContent:'flex-start'
+      },
+      Stxt:{
+          fontSize:moderateScale(14),
+          fontFamily:'Poppins-Medium',
+          marginLeft:moderateScale(15),
+          color:'#666'
+      }
 });

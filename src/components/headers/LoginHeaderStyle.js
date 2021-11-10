@@ -27,11 +27,13 @@ export default StyleSheet.create({
     nameHEader:{
         position:'absolute',
         left:moderateScale(65),
+        
     },
     nmaeTxt:{
         fontSize:moderateScale(16),
         fontFamily:'Poppins-Medium',
-        marginTop:3
+        marginTop:3,
+        color:'#999'
     },
     leftMin:{
         left:moderateScale(20),
