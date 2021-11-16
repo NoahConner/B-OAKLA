@@ -111,7 +111,7 @@ var filtersdata = [
     }
 ]
 
-const Filters = ({ navigation }) => {
+const Filters = ({ navigation,from }) => {
     var ui
     const [arrData, setarrData] = useState(filtersdata)
     const [ForSale, setForSale] = useState(null)
@@ -130,35 +130,35 @@ const Filters = ({ navigation }) => {
     const [SelfTourOnly, setSelfTourOnly] = useState(false)
     const [Exclude55Communities, setExclude55Communities] = useState(false)
     const [SchoolMap, setSchoolMap] = useState(false)
-    
+
     const myContext = useContext(AppContext)
 
     const togglearrData = (e) => {
-        e == 'MustHaveGarage' ? 
-        setMustHaveGarage(MustHaveGarage => !MustHaveGarage) :
-        e == 'WaterFont' ?
-        setWaterFont(WaterFont => !WaterFont) :
-        e == 'HasView' ? 
-        setHasView(HasView => !HasView) :
-        e == 'Basement' ?
-        setBasement(Basement => !Basement) :
-        e == 'AccessibleHome' ?
-        setAccessibleHome(AccessibleHome => !AccessibleHome) :
-        e == 'Elevator' ?
-        setElevator(Elevator => !Elevator) :
-        e == 'GreenHome' ?
-        setGreenHome(GreenHome => !GreenHome) :
-        e == 'OpenHouses' ?
-        setOpenHouses(OpenHouses => !OpenHouses) :
-        e == 'DWalkthroughVideoTour' ?
-        setDWalkthroughVideoTour(DWalkthroughVideoTour => !DWalkthroughVideoTour) :
-        e == 'SelfTourOnly' ?
-        setSelfTourOnly(SelfTourOnly => !SelfTourOnly) :
-        e == 'Exclude55Communities' ?
-        setExclude55Communities(Exclude55Communities => !Exclude55Communities) :
-        e == 'SchoolMap' ?
-        setSchoolMap(SchoolMap => !SchoolMap) :
-        null
+        e == 'MustHaveGarage' ?
+            setMustHaveGarage(MustHaveGarage => !MustHaveGarage) :
+            e == 'WaterFont' ?
+                setWaterFont(WaterFont => !WaterFont) :
+                e == 'HasView' ?
+                    setHasView(HasView => !HasView) :
+                    e == 'Basement' ?
+                        setBasement(Basement => !Basement) :
+                        e == 'AccessibleHome' ?
+                            setAccessibleHome(AccessibleHome => !AccessibleHome) :
+                            e == 'Elevator' ?
+                                setElevator(Elevator => !Elevator) :
+                                e == 'GreenHome' ?
+                                    setGreenHome(GreenHome => !GreenHome) :
+                                    e == 'OpenHouses' ?
+                                        setOpenHouses(OpenHouses => !OpenHouses) :
+                                        e == 'DWalkthroughVideoTour' ?
+                                            setDWalkthroughVideoTour(DWalkthroughVideoTour => !DWalkthroughVideoTour) :
+                                            e == 'SelfTourOnly' ?
+                                                setSelfTourOnly(SelfTourOnly => !SelfTourOnly) :
+                                                e == 'Exclude55Communities' ?
+                                                    setExclude55Communities(Exclude55Communities => !Exclude55Communities) :
+                                                    e == 'SchoolMap' ?
+                                                        setSchoolMap(SchoolMap => !SchoolMap) :
+                                                        null
     }
 
     const setTripCount = (event) => {
@@ -371,72 +371,72 @@ const Filters = ({ navigation }) => {
                     </View>
                 </View>
 
-                <View style={[s.dflex,s.mt30]}>
+                <View style={[s.dflex, s.mt30]}>
                     <TouchableOpacity onPress={() => togglearrData('OpenHouses')}>
                         <Text style={s.mustHave}>Open Houses</Text>
                     </TouchableOpacity>
                     <View >
                         <ToggleSwitch
                             isOn={OpenHouses}
-                            trackOnStyle={{backgroundColor:'#E5D8B7'}}
-                            trackOffStyle={{backgroundColor:'#f1f1f1'}}
-                            thumbOnStyle={{backgroundColor:'#B48618'}}
-                            thumbOffStyle={{backgroundColor:'#C4C4C4'}}
+                            trackOnStyle={{ backgroundColor: '#E5D8B7' }}
+                            trackOffStyle={{ backgroundColor: '#f1f1f1' }}
+                            thumbOnStyle={{ backgroundColor: '#B48618' }}
+                            thumbOffStyle={{ backgroundColor: '#C4C4C4' }}
                             size="medium"
                             onToggle={() => togglearrData('OpenHouses')}
                         />
                     </View>
                 </View>
-                <View style={[s.dflex,s.mt30]}>
+                <View style={[s.dflex, s.mt30]}>
                     <TouchableOpacity onPress={() => togglearrData('DWalkthroughVideoTour')}>
                         <Text style={s.mustHave}>3D Walkthrough & Video Tour</Text>
                     </TouchableOpacity>
                     <View >
                         <ToggleSwitch
                             isOn={DWalkthroughVideoTour}
-                            trackOnStyle={{backgroundColor:'#E5D8B7'}}
-                            trackOffStyle={{backgroundColor:'#f1f1f1'}}
-                            thumbOnStyle={{backgroundColor:'#B48618'}}
-                            thumbOffStyle={{backgroundColor:'#C4C4C4'}}
+                            trackOnStyle={{ backgroundColor: '#E5D8B7' }}
+                            trackOffStyle={{ backgroundColor: '#f1f1f1' }}
+                            thumbOnStyle={{ backgroundColor: '#B48618' }}
+                            thumbOffStyle={{ backgroundColor: '#C4C4C4' }}
                             size="medium"
                             onToggle={() => togglearrData('DWalkthroughVideoTour')}
                         />
                     </View>
                 </View>
-                <View style={[s.dflex,s.mt30]}>
+                <View style={[s.dflex, s.mt30]}>
                     <TouchableOpacity onPress={() => togglearrData('SelfTourOnly')}>
                         <Text style={s.mustHave}>Self Tour Only</Text>
                     </TouchableOpacity>
                     <View >
                         <ToggleSwitch
                             isOn={SelfTourOnly}
-                            trackOnStyle={{backgroundColor:'#E5D8B7'}}
-                            trackOffStyle={{backgroundColor:'#f1f1f1'}}
-                            thumbOnStyle={{backgroundColor:'#B48618'}}
-                            thumbOffStyle={{backgroundColor:'#C4C4C4'}}
+                            trackOnStyle={{ backgroundColor: '#E5D8B7' }}
+                            trackOffStyle={{ backgroundColor: '#f1f1f1' }}
+                            thumbOnStyle={{ backgroundColor: '#B48618' }}
+                            thumbOffStyle={{ backgroundColor: '#C4C4C4' }}
                             size="medium"
                             onToggle={() => togglearrData('SelfTourOnly')}
                         />
                     </View>
                 </View>
-                <View style={[s.dflex,s.mt30]}>
+                <View style={[s.dflex, s.mt30]}>
                     <TouchableOpacity onPress={() => togglearrData('Exclude55Communities')}>
                         <Text style={s.mustHave}>Exclude 55+ Communities</Text>
                     </TouchableOpacity>
                     <View >
                         <ToggleSwitch
                             isOn={Exclude55Communities}
-                            trackOnStyle={{backgroundColor:'#E5D8B7'}}
-                            trackOffStyle={{backgroundColor:'#f1f1f1'}}
-                            thumbOnStyle={{backgroundColor:'#B48618'}}
-                            thumbOffStyle={{backgroundColor:'#C4C4C4'}}
+                            trackOnStyle={{ backgroundColor: '#E5D8B7' }}
+                            trackOffStyle={{ backgroundColor: '#f1f1f1' }}
+                            thumbOnStyle={{ backgroundColor: '#B48618' }}
+                            thumbOffStyle={{ backgroundColor: '#C4C4C4' }}
                             size="medium"
                             onToggle={() => togglearrData('Exclude55Communities')}
                         />
                     </View>
                 </View>
 
-                <View style={[s.divider,s.mt30]}></View>
+                <View style={[s.divider, s.mt30]}></View>
 
                 <View>
                     <View>
@@ -449,7 +449,7 @@ const Filters = ({ navigation }) => {
                         <Text style={[s.hTxt, s.mt20]}>Price</Text>
                         <View style={s.dflex}>
                             <View style={s.mInp2}>
-                                <View style={[s.picker,s.mt0]}>
+                                <View style={[s.picker, s.mt0]}>
                                     <RNPickerSelect
                                         onValueChange={(value) => console.log(value)}
                                         items={[
@@ -464,7 +464,7 @@ const Filters = ({ navigation }) => {
                                 <Text style={s.to}>To</Text>
                             </View>
                             <View style={s.mInp2}>
-                                <View style={[s.picker,s.mt0]}>
+                                <View style={[s.picker, s.mt0]}>
                                     <RNPickerSelect
                                         onValueChange={(value) => console.log(value)}
                                         items={[
@@ -511,120 +511,120 @@ const Filters = ({ navigation }) => {
                     </View>
                 </View>
 
-                <View style={[s.dflex,s.mt30]}>
+                <View style={[s.dflex, s.mt30]}>
                     <TouchableOpacity onPress={() => togglearrData('MustHaveGarage')}>
                         <Text style={s.mustHave}>Must Have Garage</Text>
                     </TouchableOpacity>
                     <View >
                         <ToggleSwitch
                             isOn={MustHaveGarage}
-                            trackOnStyle={{backgroundColor:'#E5D8B7'}}
-                            trackOffStyle={{backgroundColor:'#f1f1f1'}}
-                            thumbOnStyle={{backgroundColor:'#B48618'}}
-                            thumbOffStyle={{backgroundColor:'#C4C4C4'}}
+                            trackOnStyle={{ backgroundColor: '#E5D8B7' }}
+                            trackOffStyle={{ backgroundColor: '#f1f1f1' }}
+                            thumbOnStyle={{ backgroundColor: '#B48618' }}
+                            thumbOffStyle={{ backgroundColor: '#C4C4C4' }}
                             size="medium"
                             onToggle={() => togglearrData('MustHaveGarage')}
                         />
                     </View>
                 </View>
-                <View style={[s.dflex,s.mt20]}>
+                <View style={[s.dflex, s.mt20]}>
                     <TouchableOpacity onPress={() => togglearrData('WaterFont')}>
-                    <Text style={s.mustHave}>Water front</Text>
+                        <Text style={s.mustHave}>Water front</Text>
                     </TouchableOpacity>
                     <View >
                         <ToggleSwitch
                             isOn={WaterFont}
-                            trackOnStyle={{backgroundColor:'#E5D8B7'}}
-                            trackOffStyle={{backgroundColor:'#f1f1f1'}}
-                            thumbOnStyle={{backgroundColor:'#B48618'}}
-                            thumbOffStyle={{backgroundColor:'#C4C4C4'}}
+                            trackOnStyle={{ backgroundColor: '#E5D8B7' }}
+                            trackOffStyle={{ backgroundColor: '#f1f1f1' }}
+                            thumbOnStyle={{ backgroundColor: '#B48618' }}
+                            thumbOffStyle={{ backgroundColor: '#C4C4C4' }}
                             size="medium"
                             onToggle={() => togglearrData('WaterFont')}
                         />
                     </View>
                 </View>
-                <View style={[s.dflex,s.mt20]}>
+                <View style={[s.dflex, s.mt20]}>
                     <TouchableOpacity onPress={() => togglearrData('HasView')}>
-                    <Text style={s.mustHave}>Has view</Text>
+                        <Text style={s.mustHave}>Has view</Text>
                     </TouchableOpacity>
                     <View >
                         <ToggleSwitch
                             isOn={HasView}
-                            trackOnStyle={{backgroundColor:'#E5D8B7'}}
-                            trackOffStyle={{backgroundColor:'#f1f1f1'}}
-                            thumbOnStyle={{backgroundColor:'#B48618'}}
-                            thumbOffStyle={{backgroundColor:'#C4C4C4'}}
+                            trackOnStyle={{ backgroundColor: '#E5D8B7' }}
+                            trackOffStyle={{ backgroundColor: '#f1f1f1' }}
+                            thumbOnStyle={{ backgroundColor: '#B48618' }}
+                            thumbOffStyle={{ backgroundColor: '#C4C4C4' }}
                             size="medium"
                             onToggle={() => togglearrData('HasView')}
                         />
                     </View>
                 </View>
-                <View style={[s.dflex,s.mt20]}>
+                <View style={[s.dflex, s.mt20]}>
                     <TouchableOpacity onPress={() => togglearrData('Basement')}>
-                    <Text style={s.mustHave}>Basement</Text>
+                        <Text style={s.mustHave}>Basement</Text>
                     </TouchableOpacity>
                     <View >
                         <ToggleSwitch
                             isOn={Basement}
-                            trackOnStyle={{backgroundColor:'#E5D8B7'}}
-                            trackOffStyle={{backgroundColor:'#f1f1f1'}}
-                            thumbOnStyle={{backgroundColor:'#B48618'}}
-                            thumbOffStyle={{backgroundColor:'#C4C4C4'}}
+                            trackOnStyle={{ backgroundColor: '#E5D8B7' }}
+                            trackOffStyle={{ backgroundColor: '#f1f1f1' }}
+                            thumbOnStyle={{ backgroundColor: '#B48618' }}
+                            thumbOffStyle={{ backgroundColor: '#C4C4C4' }}
                             size="medium"
                             onToggle={() => togglearrData('Basement')}
                         />
                     </View>
                 </View>
-                <View style={[s.dflex,s.mt20]}>
+                <View style={[s.dflex, s.mt20]}>
                     <TouchableOpacity onPress={() => togglearrData('AccessibleHome')}>
-                    <Text style={s.mustHave}>Accessible Home</Text>
+                        <Text style={s.mustHave}>Accessible Home</Text>
                     </TouchableOpacity>
                     <View >
                         <ToggleSwitch
                             isOn={AccessibleHome}
-                            trackOnStyle={{backgroundColor:'#E5D8B7'}}
-                            trackOffStyle={{backgroundColor:'#f1f1f1'}}
-                            thumbOnStyle={{backgroundColor:'#B48618'}}
-                            thumbOffStyle={{backgroundColor:'#C4C4C4'}}
+                            trackOnStyle={{ backgroundColor: '#E5D8B7' }}
+                            trackOffStyle={{ backgroundColor: '#f1f1f1' }}
+                            thumbOnStyle={{ backgroundColor: '#B48618' }}
+                            thumbOffStyle={{ backgroundColor: '#C4C4C4' }}
                             size="medium"
                             onToggle={() => togglearrData('AccessibleHome')}
                         />
                     </View>
                 </View>
-                <View style={[s.dflex,s.mt20]}>
+                <View style={[s.dflex, s.mt20]}>
                     <TouchableOpacity onPress={() => togglearrData('Elevator')}>
-                    <Text style={s.mustHave}>Elevator</Text>
+                        <Text style={s.mustHave}>Elevator</Text>
                     </TouchableOpacity>
                     <View >
                         <ToggleSwitch
                             isOn={Elevator}
-                            trackOnStyle={{backgroundColor:'#E5D8B7'}}
-                            trackOffStyle={{backgroundColor:'#f1f1f1'}}
-                            thumbOnStyle={{backgroundColor:'#B48618'}}
-                            thumbOffStyle={{backgroundColor:'#C4C4C4'}}
+                            trackOnStyle={{ backgroundColor: '#E5D8B7' }}
+                            trackOffStyle={{ backgroundColor: '#f1f1f1' }}
+                            thumbOnStyle={{ backgroundColor: '#B48618' }}
+                            thumbOffStyle={{ backgroundColor: '#C4C4C4' }}
                             size="medium"
                             onToggle={() => togglearrData('Elevator')}
                         />
                     </View>
                 </View>
-                <View style={[s.dflex,s.mt20]}>
+                <View style={[s.dflex, s.mt20]}>
                     <TouchableOpacity onPress={() => togglearrData('GreenHome')}>
-                    <Text style={s.mustHave}>Green Home</Text>
+                        <Text style={s.mustHave}>Green Home</Text>
                     </TouchableOpacity>
                     <View >
                         <ToggleSwitch
                             isOn={GreenHome}
-                            trackOnStyle={{backgroundColor:'#E5D8B7'}}
-                            trackOffStyle={{backgroundColor:'#f1f1f1'}}
-                            thumbOnStyle={{backgroundColor:'#B48618'}}
-                            thumbOffStyle={{backgroundColor:'#C4C4C4'}}
+                            trackOnStyle={{ backgroundColor: '#E5D8B7' }}
+                            trackOffStyle={{ backgroundColor: '#f1f1f1' }}
+                            thumbOnStyle={{ backgroundColor: '#B48618' }}
+                            thumbOffStyle={{ backgroundColor: '#C4C4C4' }}
                             size="medium"
                             onToggle={() => togglearrData('GreenHome')}
                         />
                     </View>
                 </View>
-                
-                <View style={[s.divider,s.mt30]}></View>
+
+                <View style={[s.divider, s.mt30]}></View>
 
                 <View>
                     <View>
@@ -647,32 +647,47 @@ const Filters = ({ navigation }) => {
                         </View>
                     </View>
                 </View>
-                <View style={[s.dflex,s.mt30]}>
+                <View style={[s.dflex, s.mt30]}>
                     <TouchableOpacity onPress={() => togglearrData('SchoolMap')}>
                         <Text style={s.mustHave}>Show School on Map</Text>
                     </TouchableOpacity>
                     <View >
                         <ToggleSwitch
                             isOn={SchoolMap}
-                            trackOnStyle={{backgroundColor:'#E5D8B7'}}
-                            trackOffStyle={{backgroundColor:'#f1f1f1'}}
-                            thumbOnStyle={{backgroundColor:'#B48618'}}
-                            thumbOffStyle={{backgroundColor:'#C4C4C4'}}
+                            trackOnStyle={{ backgroundColor: '#E5D8B7' }}
+                            trackOffStyle={{ backgroundColor: '#f1f1f1' }}
+                            thumbOnStyle={{ backgroundColor: '#B48618' }}
+                            thumbOffStyle={{ backgroundColor: '#C4C4C4' }}
                             size="medium"
                             onToggle={() => togglearrData('SchoolMap')}
                         />
                     </View>
                 </View>
-                
+
             </KeyboardAwareScrollView>
-            <View style={s.dflex}>
-                <TouchableOpacity style={s.View}>
-                    <Text style={s.tct}>View</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={s.Skip}>
-                    <Text style={s.tcts}>Skip</Text>
-                </TouchableOpacity>
-            </View>
+            {
+                from == 'search' ? (
+                    <>
+                        <View style={s.dflex}>
+                            <TouchableOpacity style={[s.View,s.allf]}>
+                                <Text style={s.tct}>View 54 Results</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </>
+                ) : from == 'Home' ? (
+                    <>
+                        <View style={s.dflex}>
+                            <TouchableOpacity style={s.View}>
+                                <Text style={s.tct}>View</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={s.Skip}>
+                                <Text style={s.tcts}>Skip</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </>
+                ) : null
+            }
+
         </SafeAreaView>
     )
 }

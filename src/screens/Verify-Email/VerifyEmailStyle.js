@@ -37,6 +37,7 @@ export default StyleSheet.create({
         borderRadius:50,
         paddingVertical:moderateScale(15),
         fontFamily:'Poppins-Regular',
+        color:'#000'
     },
     signInBtn:{
         backgroundColor:'#000',
@@ -64,7 +65,8 @@ export default StyleSheet.create({
         alignItems:'center'
     },
     texterr:{
-        textAlign:'center'
+        textAlign:'center',
+        color:'#666'
     },
     resend:{
         width:'100%',alignItems:'center'

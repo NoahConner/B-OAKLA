@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Dimensions, TouchableOpacity, ActivityIndicator,Animated, PanResponder } from 'react-native';
+import { View, Text, Dimensions, TouchableOpacity, ActivityIndicator, Animated, PanResponder, TextInput, Modal } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import s from './SearchScreenTAbStyle';
@@ -14,6 +14,8 @@ import Bars from '../../../assets/svg/bars.svg'
 import Upfinger from '../../../assets/svg/upFinger.svg'
 import MapView, { PROVIDER_GOOGLE, Marker, ProviderPropType } from 'react-native-maps';
 import LinearGradient from 'react-native-linear-gradient';
+import Filters from '../../../components/Filters/Filters'
+import AppContext from '../../../components/Appcontext/contextApi';
 
 const { width, height } = Dimensions.get('window');
 
@@ -35,6 +37,101 @@ var arr = [
         'price': '40',
         'amenities': '3 bd, 2 bath, 1360 sqft',
         'address': '770 East Senna Ave. Spiro, OK 74959'
+    }
+]
+
+var filtersdata = [
+    {
+        'beds': [
+            {
+                'name': 'Any',
+                'selected': true
+            },
+            {
+                'name': 'Studio',
+                'selected': false
+            },
+            {
+                'name': '1',
+                'selected': false
+            },
+            {
+                'name': '2',
+                'selected': true
+            },
+            {
+                'name': '3',
+                'selected': false
+            },
+            {
+                'name': '4',
+                'selected': false
+            },
+            {
+                'name': '5',
+                'selected': false
+            },
+        ]
+    },
+    {
+        'baths': [
+            {
+                'name': 'Any',
+                'selected': false
+            },
+            {
+                'name': 'Studio',
+                'selected': false
+            },
+            {
+                'name': '1',
+                'selected': false
+            },
+            {
+                'name': '2',
+                'selected': false
+            },
+            {
+                'name': '3',
+                'selected': false
+            },
+            {
+                'name': '4',
+                'selected': false
+            },
+            {
+                'name': '5',
+                'selected': false
+            },
+        ]
+    },
+    {
+        'property-type': [
+            {
+                'name': 'Single Family Home',
+                'selected': false
+            },
+            {
+                'name': 'Condo / Townhouse / Co-op',
+                'selected': false
+            },
+            {
+                'name': 'Mobile / Mfd',
+                'selected': false
+            },
+            {
+                'name': 'Multi-Family',
+                'selected': false
+            },
+            {
+                'name': 'Farm / Ranches',
+                'selected': false
+            },
+            {
+                'name': 'Land',
+                'selected': false
+            },
+        ]
     }
 ]
 
@@ -84,14 +181,18 @@ export default class Search extends React.Component {
         this.state = {
             currentIndex: 0,
             modalVisible: true,
-            changemap: 'swip'
+            changemap: 'swip',
+            arrData: filtersdata,
+            priseFilter: false,
+            propertyFilter: false,
+            bedBathFilter: false
         }
-            this.position = new Animated.ValueXY()
-            this.rotate = this.position.x.interpolate({
-                inputRange: [-width / 2, 0, width / 2],
-                outputRange: ['-15deg', '0deg', '15deg'],
-                extrapolate: 'clamp'
-            })
+        this.position = new Animated.ValueXY()
+        this.rotate = this.position.x.interpolate({
+            inputRange: [-width / 2, 0, width / 2],
+            outputRange: ['-15deg', '0deg', '15deg'],
+            extrapolate: 'clamp'
+        })
 
         this.rotateAndTranslate = {
             transform: [{
@@ -166,6 +267,43 @@ export default class Search extends React.Component {
         })
     }
 
+    setModalVisible = (visible) => {
+        this.setState({ modalVisible: visible });
+    }
+
+    changeTypes = (p, t, i) => {
+        // ui = arrData
+        this.state.arrData[p][t][i].selected = !this.state.arrData[p][t][i].selected;
+        this.setState({ arrData: this.state.arrData })
+    }
+    dataTer = (p, t) => {
+        return (
+            this.state.arrData[p][t].map((val2, i) => {
+                return (
+                    <TouchableOpacity key={i} onPress={() => this.changeTypes(p, t, i)}>
+                        <Text style={[s.chips, val2.selected ? s.gold : null]}>{val2.name}</Text>
+                    </TouchableOpacity>
+                )
+            })
+        )
+    }
+
+    filtersOn = (con) => {
+        if (con == 'Price') {
+            this.setState({ propertyFilter: false })
+            this.setState({ bedBathFilter: false })
+            this.setState({ priseFilter: !this.state.priseFilter })
+        } else if (con == 'Property Type') {
+            this.setState({ propertyFilter: !this.state.propertyFilter })
+            this.setState({ bedBathFilter: false })
+            this.setState({ priseFilter: false })
+        } else if (con == 'Bed/Bath') {
+            this.setState({ propertyFilter: false })
+            this.setState({ bedBathFilter: !this.state.bedBathFilter })
+            this.setState({ priseFilter: false })
+        }
+    }
+
     renderUsers = () => {
 
         return Users.map((item, i) => {
@@ -179,7 +317,7 @@ export default class Search extends React.Component {
                 return (
                     <Animated.View
                         {...this.PanResponder.panHandlers}
-                        key={item.id} style={[this.rotateAndTranslate, { height: height - 170, width: width, padding: moderateScale(20), position: 'absolute',top:moderateScale(20) }]}>
+                        key={item.id} style={[this.rotateAndTranslate, { height: height - 170, width: width, padding: moderateScale(20), position: 'absolute', top: moderateScale(20) }]}>
                         <Animated.View style={{ opacity: this.likeOpacity, position: 'absolute', top: moderateScale(20), left: moderateScale(20), zIndex: 1000, backgroundColor: '#00800052', height: '100%', width: '100%', borderRadius: moderateScale(20) }}>
                         </Animated.View>
 
@@ -219,7 +357,7 @@ export default class Search extends React.Component {
                         style={[{
                             opacity: this.nextCardOpacity,
                             transform: [{ scale: this.nextCardScale }],
-                            height: height - 170, width: width, padding: moderateScale(20), position: 'absolute',top:moderateScale(20)
+                            height: height - 170, width: width, padding: moderateScale(20), position: 'absolute', top: moderateScale(20)
                         }]}>
                         <Animated.View style={{ opacity: 0, position: 'absolute', top: moderateScale(20), left: moderateScale(20), zIndex: 1000, backgroundColor: '#00800052', height: '100%', width: '100%', borderRadius: moderateScale(20) }}></Animated.View>
 
@@ -250,6 +388,12 @@ export default class Search extends React.Component {
             }
         }).reverse()
     }
+    trueModal = () => {
+        this.context.setFilterShow(true)
+        console.log(this.context.FilterShow)
+    }
+
+    static contextType = AppContext;
 
     render() {
         return (
@@ -285,23 +429,111 @@ export default class Search extends React.Component {
                                             </>
                                         )
                                     }
-
                                 </TouchableOpacity>
                             </View>
                             <View style={[s.dflex, s.chiD]}>
-                                <TouchableOpacity style={s.chipset}>
+                                <TouchableOpacity style={s.chipset} onPress={() => this.trueModal()}>
                                     <Foun name="filter" size={moderateScale(18)} color="#B48618" style={{ marginTop: moderateScale(-3), marginRight: moderateScale(4) }} />
                                     <Text style={s.chipsetxt}>Filter</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity style={s.chipset}>
-                                    <Text style={s.chipsetxt}>Price</Text>
+                                <TouchableOpacity style={[s.chipset, this.state.priseFilter ? s.bblack : null]} onPress={() => this.filtersOn('Price')}>
+                                    <Text style={[s.chipsetxt, this.state.priseFilter ? s.twhite : null]}>Price</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity style={s.chipset}>
-                                    <Text style={s.chipsetxt}>Property Type</Text>
+                                <TouchableOpacity style={[s.chipset, this.state.propertyFilter ? s.bblack : null]} onPress={() => this.filtersOn('Property Type')}>
+                                    <Text style={[s.chipsetxt, this.state.propertyFilter ? s.twhite : null]}>Property Type</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity style={s.chipset}>
-                                    <Text style={s.chipsetxt}>Bed/Bath</Text>
+                                <TouchableOpacity style={[s.chipset, this.state.bedBathFilter ? s.bblack : null]} onPress={() => this.filtersOn('Bed/Bath')}>
+                                    <Text style={[s.chipsetxt, this.state.bedBathFilter ? s.twhite : null]}>Bed/Bath</Text>
                                 </TouchableOpacity>
+                            </View>
+                            <View style={s.fResult}>
+
+                                {
+                                    this.state.priseFilter ? (
+                                        <>
+                                            <View style={[s.priceDiv, s.pdo]}>
+                                                <Text style={[s.hTxt]}>Price</Text>
+                                                <View style={s.dflex}>
+                                                    <View style={s.mInp}>
+                                                        <Text style={s.mtxt}>Min $</Text>
+                                                        <TextInput
+                                                            style={s.input}
+                                                        />
+                                                    </View>
+                                                    <View style={s.mInp}>
+                                                        <Text style={s.mtxt}>Max $</Text>
+                                                        <TextInput
+                                                            style={s.input}
+                                                        />
+                                                    </View>
+                                                </View>
+                                                <View style={[s.flexRow, s.mt20]}>
+                                                    <TouchableOpacity style={s.cancelFD}>
+                                                        <Text style={s.cancelF}>Cancel</Text>
+                                                    </TouchableOpacity>
+                                                    <TouchableOpacity style={s.cancelFD}>
+                                                        <Text style={[s.cancelF, s.reset]}>Reset</Text>
+                                                    </TouchableOpacity>
+                                                    <TouchableOpacity style={s.viewRes}>
+                                                        <Text style={[s.cancelF, s.Vres]}>View 56 Results</Text>
+                                                    </TouchableOpacity>
+                                                </View>
+                                            </View>
+                                        </>
+                                    ) : this.state.propertyFilter ? (
+                                        <>
+                                            <View style={[s.propertyDiv, s.pdo]}>
+                                                <Text style={[s.hTxt]}>Property Type</Text>
+                                                <View style={[s.dflex, s.chipes]}>
+                                                    {
+                                                        this.dataTer(2, 'property-type')
+                                                    }
+                                                </View>
+                                                <View style={[s.flexRow, s.mt20]}>
+                                                    <TouchableOpacity style={s.cancelFD}>
+                                                        <Text style={s.cancelF}>Cancel</Text>
+                                                    </TouchableOpacity>
+                                                    <TouchableOpacity style={s.cancelFD}>
+                                                        <Text style={[s.cancelF, s.reset]}>Reset</Text>
+                                                    </TouchableOpacity>
+                                                    <TouchableOpacity style={s.viewRes}>
+                                                        <Text style={[s.cancelF, s.Vres]}>View 56 Results</Text>
+                                                    </TouchableOpacity>
+                                                </View>
+                                            </View>
+                                        </>
+                                    ) : this.state.bedBathFilter ? (
+                                        <>
+                                            <View style={[s.propertyDiv, s.pdo]}>
+                                                <Text style={[s.hTxt]}>Bed</Text>
+                                                <View style={[s.dflex, s.chipes]}>
+                                                    {
+                                                        this.dataTer(0, 'beds')
+                                                    }
+                                                </View>
+
+                                                <Text style={[s.hTxt, s.mt1]}>Bath</Text>
+                                                <View style={[s.dflex, s.chipes]}>
+                                                    {
+                                                        this.dataTer(1, 'baths')
+                                                    }
+                                                </View>
+                                                <View style={[s.flexRow, s.mt20]}>
+                                                    <TouchableOpacity style={s.cancelFD}>
+                                                        <Text style={s.cancelF}>Cancel</Text>
+                                                    </TouchableOpacity>
+                                                    <TouchableOpacity style={s.cancelFD}>
+                                                        <Text style={[s.cancelF, s.reset]}>Reset</Text>
+                                                    </TouchableOpacity>
+                                                    <TouchableOpacity style={s.viewRes}>
+                                                        <Text style={[s.cancelF, s.Vres]}>View 56 Results</Text>
+                                                    </TouchableOpacity>
+                                                </View>
+                                            </View>
+                                        </>
+                                    ) : (null)
+                                }
+
                             </View>
                         </View>
                         {
@@ -404,178 +636,21 @@ export default class Search extends React.Component {
                         </>
                     ) : (null)
                 }
-
+                <View style={s.centeredView}>
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={this.context.FilterShow}
+                        onRequestClose={() => {
+                            Alert.alert("Modal has been closed.");
+                            this.setModalVisible(!this.context.FilterShow);
+                        }}
+                    >
+                        <Filters from={'search'} />
+                    </Modal>
+                </View>
             </SafeAreaView>
         )
     }
 }
-
-// const Search = ({ navigation }) => {
-//     const [swipView, setswipView] = useState(false);
-//     const [changemap, setchangemap] = useState('map');
-
-
-//     const ASPECT_RATIO = width / height;
-//     const LATITUDE = 35.4828833;
-//     const LONGITUDE = -97.7593856;
-//     const LATITUDE_DELTA = 0.0922;
-//     const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
-//     const SPACE = 0.01;
-
-//     return (
-//         <SafeAreaView >
-//             <KeyboardAwareScrollView keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
-//                 <View style={[s.container, changemap == 'map' ? s.mapTrue : null]}>
-//                     <View>
-//                         <View style={[s.dflex2, s.mt20]}>
-//                             <TouchableOpacity style={[s.mapICon, changemap == 'map' ? s.maper : null]} onPress={() => setchangemap(changemap != 'map' ? 'map' : 'cards')}>
-//                                 <Micon name="map-marker-outline" color={changemap == 'map' ? '#B48618' : '#000'} style={{ fontSize: moderateScale(20) }} />
-//                             </TouchableOpacity>
-//                             <View style={s.search}>
-//                                 <SearchBar
-//                                     placeholder="Search"
-//                                     onChangeText={(e) => console.log(e)}
-//                                     containerStyle={s.searCon}
-//                                     inputContainerStyle={s.searConInp}
-//                                     inputStyle={s.searInp}
-//                                     leftIconContainerStyle={s.lftICoo}
-//                                 />
-//                             </View>
-//                             <TouchableOpacity style={[s.mapICon, s.maper]} onPress={() => {
-//                                 setchangemap(changemap != 'cards' ? 'cards' : 'swip')
-//                             }}>
-//                                 {
-//                                     changemap == 'cards' ? (
-//                                         <>
-//                                             <Upfinger height={moderateScale(20)} width={moderateScale(20)} />
-//                                         </>
-//                                     ) : (
-//                                         <>
-//                                             <Bars height={moderateScale(20)} width={moderateScale(20)} />
-//                                         </>
-//                                     )
-//                                 }
-
-//                             </TouchableOpacity>
-//                         </View>
-//                         <View style={[s.dflex,s.chiD]}>
-//                             <TouchableOpacity style={s.chipset}>
-//                                 <Foun name="filter" size={moderateScale(18)} color="#B48618" style={{marginTop:moderateScale(-3),marginRight:moderateScale(4)}} />
-//                                 <Text style={s.chipsetxt}>Filter</Text>
-//                             </TouchableOpacity>
-//                             <TouchableOpacity style={s.chipset}>
-//                                 <Text style={s.chipsetxt}>Price</Text>
-//                             </TouchableOpacity>
-//                             <TouchableOpacity style={s.chipset}>
-//                                 <Text style={s.chipsetxt}>Property Type</Text>
-//                             </TouchableOpacity>
-//                             <TouchableOpacity style={s.chipset}>
-//                                 <Text style={s.chipsetxt}>Bed/Bath</Text>
-//                             </TouchableOpacity>
-//                         </View>
-//                     </View>
-//                     {
-//                         changemap == 'cards' ? (
-//                             <>
-//                                 <View style={s.mainj}>
-//                                     {
-//                                         arr.map((val, i) => {
-//                                             return (
-//                                                 <TouchableOpacity style={s.card} key={i}>
-//                                                     <View style={s.image}>
-//                                                         <Image
-//                                                             source={{ uri: val.image }}
-//                                                             style={{ width: '100%', height: '100%' }}
-//                                                             resizeMode={'cover'}
-//                                                             PlaceholderContent={<ActivityIndicator />}
-//                                                         />
-//                                                     </View>
-//                                                     <View style={[s.dflex, s.dDivh]}>
-//                                                         <View>
-//                                                             <Text style={s.price}>${val.price}K</Text>
-//                                                             <Text style={s.drp}>{val.amenities}</Text>
-//                                                             <Text style={s.drp}>{val.address}</Text>
-//                                                         </View>
-//                                                         <TouchableOpacity>
-//                                                             <Icons name="share-alt" color="#000" style={{ fontSize: moderateScale(24) }} />
-//                                                         </TouchableOpacity>
-//                                                     </View>
-
-//                                                     <View style={s.hearted}>
-//                                                         <TouchableOpacity style={s.heret}>
-//                                                             <Iconicons name="heart-outline" size={moderateScale(25)} color="#B48618" />
-//                                                         </TouchableOpacity>
-//                                                     </View>
-//                                                 </TouchableOpacity>
-//                                             )
-//                                         })
-//                                     }
-//                                 </View>
-
-//                             </>
-//                         ) : (
-//                             null
-//                         )
-
-//                     }
-
-//                 </View>
-//             </KeyboardAwareScrollView>
-//             {
-//                 changemap == 'map' ? (
-//                     <>
-//                         <View style={s.mapD}>
-//                             <MapView
-//                                 provider={PROVIDER_GOOGLE} // remove if not using Google Maps
-//                                 style={s.map}
-//                                 region={{
-//                                     latitude: LATITUDE,
-//                                     longitude: LONGITUDE,
-//                                     latitudeDelta: LATITUDE_DELTA,
-//                                     longitudeDelta: LONGITUDE_DELTA,
-//                                 }}
-//                             >
-
-//                                 <Marker
-//                                     coordinate={{
-//                                         latitude: 35.4828833,
-//                                         longitude: -97.7593855,
-//                                     }}
-//                                     title={'Jone`s House'}
-//                                     onPress={e => console.log('onSelect', e)}
-//                                 />
-//                                 <Marker
-//                                     coordinate={{
-//                                         latitude: 35.499999,
-//                                         longitude: -97.7593855,
-//                                     }}
-//                                     title={'Emily`s House'}
-//                                     onPress={e => console.log('onSelect', e)}
-//                                 />
-
-//                                 <Marker
-//                                     coordinate={{
-//                                         latitude: 35.498999,
-//                                         longitude: -97.7433855,
-//                                     }}
-//                                     title={'Mark`s House'}
-//                                     onPress={e => console.log('onSelect', e)}
-//                                 />
-//                             </MapView>
-//                         </View>
-//                     </>
-//                 ) : changemap == 'swip' ? (
-//                     <>
-//                         <View style={s.listing}>
-
-//                         </View>
-//                     </>
-//                 ) : (null)
-//             }
-
-//         </SafeAreaView>
-//     )
-// }
-
-// export default Search;
 

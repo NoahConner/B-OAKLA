@@ -100,7 +100,7 @@ export default class OTAB extends React.Component {
 
     setModalVisible = (visible) => {
         this.setState({ modalVisible: visible });
-      }
+    }
 
     UNSAFE_componentWillMount() {
         this.PanResponder = PanResponder.create({
@@ -263,7 +263,7 @@ export default class OTAB extends React.Component {
                             this.setModalVisible(!this.context.FilterShow);
                         }}
                     >
-                        <Filters/>
+                        <Filters from={'Home'}/>
                     </Modal>
                 </View>
             </SafeAreaView>

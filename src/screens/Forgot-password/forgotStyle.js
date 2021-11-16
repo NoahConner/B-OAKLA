@@ -35,6 +35,7 @@ export default StyleSheet.create({
         borderRadius:50,
         paddingVertical:moderateScale(15),
         fontFamily:'Poppins-Regular',
+        color:'#000'
     },
     signInBtn:{
         backgroundColor:'#000',

@@ -162,6 +162,9 @@ export default StyleSheet.create({
         borderRadius:moderateScale(50),
         width:'72%'
     },
+    allf:{
+        width:'100%'
+    },
     tct:{
         color:'#fff',
         fontSize:moderateScale(16),
