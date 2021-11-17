@@ -680,7 +680,7 @@ const Filters = ({ navigation,from }) => {
                             <TouchableOpacity style={s.View}>
                                 <Text style={s.tct}>View</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={s.Skip}>
+                            <TouchableOpacity style={s.Skip} onPress={() => myContext.setFilterShow(false)}>
                                 <Text style={s.tcts}>Skip</Text>
                             </TouchableOpacity>
                         </View>

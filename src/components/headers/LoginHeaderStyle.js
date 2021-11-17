@@ -37,5 +37,11 @@ export default StyleSheet.create({
     },
     leftMin:{
         left:moderateScale(20),
+    },
+    floatable:{
+        position:'absolute',
+        zIndex:9,
+        top:0,
+        width:'100%'
     }
 });

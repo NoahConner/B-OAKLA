@@ -13,6 +13,7 @@ import NewPassword from './src/screens/New-Password/NewPasswordScreen';
 import VerifyEmail from './src/screens/Verify-Email/VerifyEmail';
 import TermsPage from './src/screens/Terms-of-Use/Term';
 import PrivacyPage from './src/screens/Privacy/Privacy';
+import HomeInner from './src/screens/HomeInner/HomeInner';
 
 import Home from './src/screens/Home/HomeScreen'
 
@@ -42,7 +43,7 @@ const App = (navigation) => {
             ) : (
               <>
                 <Stack.Screen name="Home" component={Home} />
-
+                <Stack.Screen name="HomeInner" component={HomeInner} />
               </>
             )
           }

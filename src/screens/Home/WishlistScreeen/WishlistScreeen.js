@@ -121,8 +121,6 @@ const Wishlist = ({ navigation }) => {
                         )
                     }
 
-                    
-
                     {
                         savedHome == 0 ? (
                             changemap ? (
@@ -133,7 +131,7 @@ const Wishlist = ({ navigation }) => {
                                         {
                                             arr.map((val, i) => {
                                                 return (
-                                                    <TouchableOpacity style={s.card} key={i}>
+                                                    <TouchableOpacity style={s.card} key={i} onPress={() => navigation.navigate('HomeInner')}>
                                                         <View style={s.image}>
                                                             <Image
                                                                 source={{ uri: val.image }}
@@ -146,13 +144,13 @@ const Wishlist = ({ navigation }) => {
                                                             <View>
                                                                 <Text style={s.price}>${val.price}K</Text>
                                                                 <Text style={s.drp}>{val.amenities}</Text>
-                                                                <Text style={s.drp}>{val.address}</Text>
+                                                                <Text style={s.drp}>{val.address} </Text>
                                                             </View>
                                                             <TouchableOpacity>
                                                                 <Icons name="share-alt" color="#000" style={{ fontSize: moderateScale(24) }} />
                                                             </TouchableOpacity>
                                                         </View>
-    
+                                                        
                                                         <View style={s.hearted}>
                                                             <TouchableOpacity style={s.heret}>
                                                                 <Iconicons name="heart-outline" size={moderateScale(25)} color="#B48618" />

@@ -11,10 +11,10 @@ import ShareIcon from '../../assets/svg/shareicon.svg'
 import AppContext from '../../components/Appcontext/contextApi';
 
 
-const LoginHeader = ({ navigation, backbutton, sharebutton, logo, pagename }) => {
+const LoginHeader = ({ navigation, backbutton, sharebutton, logo, pagename, float }) => {
     const myContext = useContext(AppContext)
     return (
-        <View style={[s.main, s.container]}>
+        <View style={[s.main, s.container, float ? s.floatable : null]}>
             <View>
                 {
                     backbutton ? (
