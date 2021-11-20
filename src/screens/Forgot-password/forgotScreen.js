@@ -3,6 +3,7 @@ import { Image, View, Text, TextInput, TouchableOpacity, SafeAreaView, Touchable
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import s from './forgotStyle';
 import LoginHeader from '../../components/headers/LoginHeader'
+import {  Input  } from 'react-native-elements';
 
 const ForgotPassword = ({navigation}) => {
     return(
@@ -15,10 +16,11 @@ const ForgotPassword = ({navigation}) => {
                     <Text style={s.signInP}>Reset password in two quick steps</Text>
 
                     <View style={s.inpMain}>
-                        <TextInput
-                            style={s.input}
-                            placeholder="Email Address"
-                            keyboardType="default"
+                        <Input
+                            placeholder='Email Address'
+                            inputStyle={s.inpStyle}
+                            inputContainerStyle={s.inpConStyle}
+                            containerStyle={s.conStyle}
                         />
 
                         <TouchableOpacity onPress={() => navigation.navigate('VerifyEmail')}>

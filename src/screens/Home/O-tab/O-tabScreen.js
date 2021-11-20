@@ -17,31 +17,31 @@ const SCREEN_WIDTH = Dimensions.get('window').width
 const Users = [
     {
         id: "1",
-        uri: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8&w=1000&q=80',
+        uri: 'https://wallpaperaccess.com/full/3060214.jpg',
         price: '50k',
         address: '770 West Senna Ave. Spiro, OK 74959 3 bd, 2 bath, 1360 sqft'
     },
     {
         id: "2",
-        uri: 'https://images.unsplash.com/photo-1532980400857-e8d9d275d858?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9vZCUyMHBob3RvZ3JhcGh5fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80',
+        uri: 'https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
         price: '30k',
         address: '770 West Senna Ave. Spiro, OK 74959'
     },
     {
         id: "3",
-        uri: 'https://i.pinimg.com/originals/de/68/9f/de689f4606ca47b01db489679afbe6fa.jpg',
+        uri: 'https://wallpapercave.com/wp/wp2124316.jpg',
         price: '90k',
         address: '770 West Senna Ave. Spiro, OK 74959 3 bd, 2 bath, 1360 sqft'
     },
     {
         id: "4",
-        uri: 'https://i.pinimg.com/736x/f3/6b/58/f36b5886f63b1131246fae4cc83efac8.jpg',
+        uri: 'https://lh3.googleusercontent.com/proxy/uzjDkVx9OZBnpXRQSUEt-GrytpK_XhzcY5pzLgFvldYlsGOOSsT_BhI-7zdo-SBDY9NIMbCwrgSwETjUWgVjdZwVupPZd-NyxotR9nuyl4e-_c0G_fGx3BuDS-h1hqxvd7KlbDL7hcXOSnVWSUBlp7yblryEEIk',
         price: '10k',
         address: '770 West Senna Ave. Spiro, OK 74959 3 bd, 2 bath, 1360 sqft'
     },
     {
         id: "5",
-        uri: 'https://cdn.pixabay.com/photo/2016/12/26/17/28/spaghetti-1932466__480.jpg',
+        uri: 'https://www.setaswall.com/wp-content/uploads/2017/06/House-Wallpapers-37-1920-x-1200.jpg',
         price: '25k',
         address: '770 West Senna Ave. Spiro, OK 74959 3 bd, 2 bath, 1360 sqft'
     },

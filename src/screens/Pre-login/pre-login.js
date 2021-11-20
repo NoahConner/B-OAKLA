@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { Image, View, Text, ScrollView, TouchableOpacity, SafeAreaView, TouchableWithoutFeedback, Switch, FlatList, Modal, Pressable, StatusBar, ImageBackground } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 import styles from './pre-loginStyle';
@@ -9,8 +9,10 @@ import FacebookLogo from '../../assets/svg/FacebookLogo.svg'
 import GoogleLogo from '../../assets/svg/GoogleLogo.svg'
 import MailLogo from '../../assets/svg/MailLogo.svg'
 
+import AppContext from '../../components/Appcontext/contextApi'
 
 const PreLogin = ({ navigation }) => {
+    const context = useContext(AppContext)
     return (
         <SafeAreaView style={styles.container}>
             <KeyboardAwareScrollView keyboardShouldPersistTaps="handled">
@@ -32,13 +34,13 @@ const PreLogin = ({ navigation }) => {
                         <ImageBackground source={require('../../assets/png/overlayBlack.png')} resizeMode="stretch" style={styles.image}>
 
                             <View style={styles.btnsView}>
-                                <TouchableOpacity style={styles.mt20}>
+                                <TouchableOpacity style={styles.mt20} onPress={() => context.setuserToken('null')}>
                                     <View style={styles.btns}>
                                         <GoogleLogo height={moderateScale(22)} width={moderateScale(22)} />
                                         <Text style={styles.continueTxt}>Continue with Google</Text>
                                     </View>
                                 </TouchableOpacity>
-                                <TouchableOpacity style={styles.mt20}>
+                                <TouchableOpacity style={styles.mt20} onPress={() => context.setuserToken('null')}>
                                     <View style={styles.btns}>
                                         <FacebookLogo height={moderateScale(22)} width={moderateScale(22)} />
                                         <Text style={styles.continueTxt}>Continue with Facebook</Text>

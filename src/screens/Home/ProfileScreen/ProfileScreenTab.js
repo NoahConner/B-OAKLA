@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, ActivityIndicator, TouchableOpacity, SafeAreaView, TextInput } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 import s from './ProfileStyle';
@@ -12,7 +12,10 @@ import PrivacyIcon from '../../../assets/svg/privacy.svg'
 import LockIcon from '../../../assets/svg/lock.svg'
 import LogoutIcon from '../../../assets/svg/logout.svg'
 
+import AppContext from '../../../components/Appcontext/contextApi';
+
 const Profile = ({ navigation }) => {
+    const context = useContext(AppContext)
     return (
         <SafeAreaView style={s.container}>
             <LoginHeader navigation={navigation} backbutton={false} sharebutton={false} logo={false} pagename={'Account'} />
@@ -88,7 +91,7 @@ const Profile = ({ navigation }) => {
                                 <Text style={s.nono}>Forgot password</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={[s.dflex,s.mb30]}>
+                        <TouchableOpacity style={[s.dflex,s.mb30]} onPress={() => context.setuserToken(null)}>
                             <View style={s.icon}>
                                 <LogoutIcon height={30} width={30} />
                             </View>

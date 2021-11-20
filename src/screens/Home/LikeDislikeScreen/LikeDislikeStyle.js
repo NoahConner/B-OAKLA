@@ -68,7 +68,7 @@ export default StyleSheet.create({
         position:'absolute',
         backgroundColor:'#f1f1f1',
         width:130,
-        left:moderateScale(70)
+        left:moderateScale(75)
     },
     bhj:{
         // backgroundColor:'#000',

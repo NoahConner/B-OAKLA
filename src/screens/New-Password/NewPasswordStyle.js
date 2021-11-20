@@ -55,6 +55,26 @@ export default StyleSheet.create({
         fontSize:moderateScale(16),
         textAlign:'center',
         marginTop:moderateScale(15)
-    }
+    },
+    inpStyle:{
+        fontSize:moderateScale(14),
+        fontFamily:'Poppins-Medium',
+        margin:0,
+        
+    },
+    conStyle:{
+        backgroundColor:'#f1f1f1',
+        height:50,
+        borderRadius:moderateScale(50),
+        overflow: 'hidden',
+        marginBottom:moderateScale(15)
+    },
+    inpConStyle:{
+        // backgroundColor:'#00205b',
+        borderBottomColor:'transparent',
+        borderBottomWidth:0,
+        paddingLeft:moderateScale(10),
+        paddingTop:moderateScale(5)
+    },
 
 });

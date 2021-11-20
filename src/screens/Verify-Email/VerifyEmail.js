@@ -3,6 +3,7 @@ import { Image, View, Text, TextInput, TouchableOpacity, SafeAreaView, Touchable
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import s from './VerifyEmailStyle';
 import LoginHeader from '../../components/headers/LoginHeader'
+import {  Input  } from 'react-native-elements';
 
 const VerifyEmail = ({navigation}) => {
     return(
@@ -18,10 +19,11 @@ const VerifyEmail = ({navigation}) => {
                             <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}><Text style={s.pleaseSignS}>Change</Text></TouchableOpacity>
                         </View>
                     <View style={s.inpMain}>
-                        <TextInput
-                            style={s.input}
-                            placeholder="6 Digit Code"
-                            keyboardType="number-pad"
+                        <Input
+                            placeholder='6 Digit Code'
+                            inputStyle={s.inpStyle}
+                            inputContainerStyle={s.inpConStyle}
+                            containerStyle={s.conStyle}
                         />
                         <TouchableOpacity style={s.resend}>
                             <Text style={s.pleaseSignS}>
