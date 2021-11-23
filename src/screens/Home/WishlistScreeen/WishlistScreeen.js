@@ -89,9 +89,11 @@ const Wishlist = ({ navigation }) => {
                                         <RNPickerSelect
                                             onValueChange={(value) => console.log(value)}
                                             items={[
-                                                { label: 'ABC', value: 'ABC' },
-                                                { label: 'ABC', value: 'ABC' },
-                                                { label: 'ABC', value: 'ABC' },
+                                                { label: 'Active + coming soon listings', value: 'Active + coming soon listings' },
+                                                { label: 'Coming soon listings', value: 'Coming soon listings' },
+                                                { label: 'Active listings', value: 'Active listings' },
+                                                { label: 'Active + under contract/pending', value: 'Active + under contract/pending' },
+                                                { label: 'Only under contract/pending', value: 'Only under contract/pending' },
                                             ]}
                                         />
                                     </View>

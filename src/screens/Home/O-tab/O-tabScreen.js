@@ -273,7 +273,7 @@ export default class OTAB extends React.Component {
         // console.log(this.context.FilterShow)
         return (
             <SafeAreaView>
-                {/* <View style={{ flex: 1 }}>
+                <View style={{ flex: 1 }}>
                     <View style={s.logoHeader}>
                         <View>
                             <AppLogo width={moderateScale(110)} height={moderateScale(60)} />
@@ -285,8 +285,8 @@ export default class OTAB extends React.Component {
                     <View style={{ flex: 1 }}>
                         {this.renderUsers(this.props.navigation)}
                     </View>
-                </View> */}
-                <View style={{ flex: 1, }}>
+                </View>
+                {/* <View style={{ flex: 1}}>
                     <Swiper
                         cards={Users}
                         renderCard={(card) => {
@@ -319,13 +319,8 @@ export default class OTAB extends React.Component {
                         cardIndex={0}
                         backgroundColor={'#4FD0E9'}
                         stackSize={3}>
-                        <Button
-                            onPress={() => { console.log('oulala') }}
-                            title="Press me">
-                            You can press me
-                        </Button>
                     </Swiper>
-                </View>
+                </View> */}
 
                 <View style={s.centeredView}>
                     <Modal

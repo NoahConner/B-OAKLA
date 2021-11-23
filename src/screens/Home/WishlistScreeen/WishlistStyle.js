@@ -72,7 +72,7 @@ export default StyleSheet.create({
         fontFamily:'Poppins-Medium',
         position:'absolute',
         backgroundColor:'#f1f1f1',
-        width:130,
+        width:moderateScale(150),
         left:moderateScale(90)
     },
     bhj:{

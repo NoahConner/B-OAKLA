@@ -49,10 +49,6 @@ var filtersdata = [
                 'selected': false
             },
             {
-                'name': 'Studio',
-                'selected': false
-            },
-            {
                 'name': '1',
                 'selected': false
             },
@@ -85,7 +81,7 @@ var filtersdata = [
                 'selected': false
             },
             {
-                'name': 'Mobile / Mfd',
+                'name': 'Mobile',
                 'selected': false
             },
             {
@@ -332,9 +328,11 @@ const Filters = ({ navigation,from }) => {
                             <RNPickerSelect
                                 onValueChange={(value) => console.log(value)}
                                 items={[
-                                    { label: 'ABC', value: 'ABC' },
-                                    { label: 'ABC', value: 'ABC' },
-                                    { label: 'ABC', value: 'ABC' },
+                                    { label: 'Active + coming soon listings', value: 'Active + coming soon listings' },
+                                    { label: 'Coming soon listings', value: 'Coming soon listings' },
+                                    { label: 'Active listings', value: 'Active listings' },
+                                    { label: 'Active + under contract/pending', value: 'Active + under contract/pending' },
+                                    { label: 'Only under contract/pending', value: 'Only under contract/pending' },
                                 ]}
                             />
                         </View>
@@ -348,9 +346,19 @@ const Filters = ({ navigation,from }) => {
                             <RNPickerSelect
                                 onValueChange={(value) => console.log(value)}
                                 items={[
-                                    { label: 'ABC', value: 'ABC' },
-                                    { label: 'ABC', value: 'ABC' },
-                                    { label: 'ABC', value: 'ABC' },
+                                    { label: 'No max', value: 'No max' },
+                                    { label: 'New listings', value: 'New listings' },
+                                    { label: 'Less than 3 days', value: 'Less than 3 days' },
+                                    { label: 'Less than 7 days', value: 'Less than 7 days' },
+                                    { label: 'Less than 14 days', value: 'Less than 14 days' },
+                                    { label: 'Less than 30 days', value: 'Less than 30 days' },
+                                    { label: 'More than 7 days', value: 'More than 7 days' },
+                                    { label: 'More than 14 days', value: 'More than 14 days' },
+                                    { label: 'More than 30 days', value: 'More than 30 days' },
+                                    { label: 'More than 45 days', value: 'More than 45 days' },
+                                    { label: 'More than 60 days', value: 'More than 60 days' },
+                                    { label: 'More than 90 days', value: 'More than 90 days' },
+                                    { label: 'More than 180 days', value: 'More than 180 days' }
                                 ]}
                             />
                         </View>
@@ -440,9 +448,16 @@ const Filters = ({ navigation,from }) => {
                                     <RNPickerSelect
                                         onValueChange={(value) => console.log(value)}
                                         items={[
-                                            { label: 'ABC', value: 'ABC' },
-                                            { label: 'ABC', value: 'ABC' },
-                                            { label: 'ABC', value: 'ABC' },
+                                            { label: '1', value: '1' },
+                                            { label: '2', value: '2' },
+                                            { label: '3', value: '3' },
+                                            { label: '4', value: '3' },
+                                            { label: '5', value: '3' },
+                                            { label: '6', value: '3' },
+                                            { label: '7', value: '3' },
+                                            { label: '8', value: '3' },
+                                            { label: '9', value: '3' },
+
                                         ]}
                                     />
                                 </View>
@@ -455,9 +470,16 @@ const Filters = ({ navigation,from }) => {
                                     <RNPickerSelect
                                         onValueChange={(value) => console.log(value)}
                                         items={[
-                                            { label: 'ABC', value: 'ABC' },
-                                            { label: 'ABC', value: 'ABC' },
-                                            { label: 'ABC', value: 'ABC' },
+                                            { label: 'No Max', value: 'No Max' },
+                                            { label: '1', value: '1' },
+                                            { label: '2', value: '2' },
+                                            { label: '3', value: '3' },
+                                            { label: '4', value: '3' },
+                                            { label: '5', value: '3' },
+                                            { label: '6', value: '3' },
+                                            { label: '7', value: '3' },
+                                            { label: '8', value: '3' },
+                                            { label: '9', value: '3' },
                                         ]}
                                     />
                                 </View>
@@ -473,9 +495,11 @@ const Filters = ({ navigation,from }) => {
                             <RNPickerSelect
                                 onValueChange={(value) => console.log(value)}
                                 items={[
-                                    { label: 'ABC', value: 'ABC' },
-                                    { label: 'ABC', value: 'ABC' },
-                                    { label: 'ABC', value: 'ABC' },
+                                    { label: '1+', value: '1+' },
+                                    { label: '2+', value: '2+' },
+                                    { label: '3+', value: '3+' },
+                                    { label: '4+', value: '4+' },
+                                    { label: '5+', value: '5+' },
                                 ]}
                             />
                         </View>
@@ -484,14 +508,14 @@ const Filters = ({ navigation,from }) => {
 
                 <View>
                     <View>
-                        <Text style={[s.hTxt, s.mt25]}>Pool</Text>
+                        <Text style={[s.hTxt, s.mt25]}>Pool Type</Text>
                         <View style={s.picker}>
                             <RNPickerSelect
                                 onValueChange={(value) => console.log(value)}
                                 items={[
-                                    { label: 'ABC', value: 'ABC' },
-                                    { label: 'ABC', value: 'ABC' },
-                                    { label: 'ABC', value: 'ABC' },
+                                    { label: 'Private pool', value: 'Private pool' },
+                                    { label: 'Community pool', value: 'Community pool' },
+                                    { label: 'Private or community pool', value: 'Private or community pool' },
                                 ]}
                             />
                         </View>
@@ -626,9 +650,15 @@ const Filters = ({ navigation,from }) => {
                             <RNPickerSelect
                                 onValueChange={(value) => console.log(value)}
                                 items={[
-                                    { label: 'ABC', value: 'ABC' },
-                                    { label: 'ABC', value: 'ABC' },
-                                    { label: 'ABC', value: 'ABC' },
+                                    { label: '1+', value: '1' },
+                                    { label: '2+', value: '2' },
+                                    { label: '3+', value: '3' },
+                                    { label: '4+', value: '3' },
+                                    { label: '5+', value: '3' },
+                                    { label: '6+', value: '3' },
+                                    { label: '7+', value: '3' },
+                                    { label: '8+', value: '3' },
+                                    { label: '9+', value: '3' },
                                 ]}
                             />
                         </View>
