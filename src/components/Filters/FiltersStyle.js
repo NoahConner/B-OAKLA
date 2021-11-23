@@ -69,11 +69,12 @@ export default StyleSheet.create({
     input:{
         backgroundColor:'#f1f1f1',
         borderRadius:moderateScale(50),
-        paddingLeft:moderateScale(65),
+        paddingLeft:moderateScale(15),
         fontSize: moderateScale(15),
         color: '#000',
         fontFamily: 'Poppins-Regular',
-        paddingTop:moderateScale(11)
+        paddingTop:moderateScale(11),
+        lineHeight:moderateScale(10)
     },
     mInp:{
         position:'relative',

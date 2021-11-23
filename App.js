@@ -17,6 +17,9 @@ import HomeInner from './src/screens/HomeInner/HomeInner';
 
 import Home from './src/screens/Home/HomeScreen'
 
+import RNBootSplash from "react-native-bootsplash";
+
+
 const App = (navigation) => {
 
   const [userToken, setuserToken] = useState('null');
@@ -27,6 +30,12 @@ const App = (navigation) => {
     setuserToken,
     setFilterShow
   }
+
+  useEffect(() => {
+    setTimeout(() => {
+        RNBootSplash.hide({fade: true})
+    }, 1000)
+}, []);
 
   return (
     <AppContext.Provider value={userSettings}>

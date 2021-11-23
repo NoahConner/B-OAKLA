@@ -1,16 +1,18 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { ActivityIndicator, Text, View, Dimensions, Animated, PanResponder, Modal, Pressable } from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
-import AppLogo from '../../../assets/svg/applogo.svg'
+import AppLogo from '../../../assets/svg/logo2.svg'
 import Icon from 'react-native-vector-icons/Ionicons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import s from './O-tabStyle'
 import LinearGradient from 'react-native-linear-gradient';
-import { Image } from 'react-native-elements';
+import { Image, Button } from 'react-native-elements';
 
 import Filters from '../../../components/Filters/Filters'
 import AppContext from '../../../components/Appcontext/contextApi';
+import { BottomNavigation } from 'react-native-paper';
+import Swiper from 'react-native-deck-swiper'
 
 const SCREEN_HEIGHT = Dimensions.get('window').height
 const SCREEN_WIDTH = Dimensions.get('window').width
@@ -47,17 +49,29 @@ const Users = [
     },
 ]
 
+
+// demo purposes only
+function* range(start, end) {
+    for (let i = start; i <= end; i++) {
+        yield i
+    }
+}
 export default class OTAB extends React.Component {
 
-    
-    
+
+
     constructor() {
         super()
 
         this.position = new Animated.ValueXY()
         this.state = {
             currentIndex: 0,
-            modalVisible: true
+            modalVisible: true,
+
+            cards: [...range(1, 50)],
+            swipedAllCards: false,
+            swipeDirection: '',
+            cardIndex: 0
         }
 
         this.rotate = this.position.x.interpolate({
@@ -143,7 +157,7 @@ export default class OTAB extends React.Component {
         })
     }
 
-    renderUsers = () => {
+    renderUsers = (navigation) => {
 
         return Users.map((item, i) => {
 
@@ -179,9 +193,11 @@ export default class OTAB extends React.Component {
                             </TouchableOpacity>
                         </Animated.View>
 
-                        {/* <Animated.View style={s.touch}>
-                            <TouchableOpacity style={s.touchDiv}></TouchableOpacity>
-                        </Animated.View> */}
+                        <Animated.View style={[s.hearted, s.hert]}>
+                            <TouchableOpacity style={[s.hereto]} onPress={() => navigation.navigate('HomeInner')}>
+
+                            </TouchableOpacity>
+                        </Animated.View>
 
                         <Image
                             source={{ uri: item.uri }}
@@ -232,14 +248,32 @@ export default class OTAB extends React.Component {
         }).reverse()
     }
 
-    
+
+
+    // 8909
+
+
+    onSwiped = (type) => {
+        console.log(`on swiped ${type}`)
+    }
+
+    onSwipedAllCards = () => {
+        this.setState({
+            swipedAllCards: true
+        })
+    };
+
+    swipeLeft = () => {
+        this.swiper.swipeLeft()
+    };
+
     static contextType = AppContext;
 
     render() {
         // console.log(this.context.FilterShow)
         return (
             <SafeAreaView>
-                <View style={{ flex: 1 }}>
+                {/* <View style={{ flex: 1 }}>
                     <View style={s.logoHeader}>
                         <View>
                             <AppLogo width={moderateScale(110)} height={moderateScale(60)} />
@@ -249,8 +283,48 @@ export default class OTAB extends React.Component {
                         </TouchableOpacity>
                     </View>
                     <View style={{ flex: 1 }}>
-                        {this.renderUsers()}
+                        {this.renderUsers(this.props.navigation)}
                     </View>
+                </View> */}
+                <View style={{ flex: 1, }}>
+                    <Swiper
+                        cards={Users}
+                        renderCard={(card) => {
+                            return (
+                                <View style={s.card}>
+                                    <Animated.View style={s.cardDetails}>
+                                        <LinearGradient start={{ x: 1, y: 0 }} end={{ x: 1, y: 1 }} colors={['transparent', 'transparent', '#000']} style={{ height: '100%', borderRadius: 20 }}>
+                                            <View style={s.AddView}>
+                                                <Text style={s.price}>${card.price}</Text>
+                                                <Text style={s.address}>{card.address}</Text>
+                                            </View>
+                                        </LinearGradient>
+                                    </Animated.View>
+
+                                    <Animated.View style={s.hearted}>
+                                        <TouchableOpacity style={s.heret}>
+                                            <Icon name="heart-outline" size={moderateScale(25)} color="#B48618" />
+                                        </TouchableOpacity>
+                                    </Animated.View>
+                                    <Image
+                                        source={{ uri: card.uri }}
+                                        style={{ height: '100%', width: '100%', resizeMode: 'cover', borderRadius: moderateScale(20) }}
+                                        PlaceholderContent={<ActivityIndicator />}
+                                    />
+                                </View>
+                            )
+                        }}
+                        onSwiped={(cardIndex) => { console.log(cardIndex) }}
+                        onSwipedAll={() => { console.log('onSwipedAll') }}
+                        cardIndex={0}
+                        backgroundColor={'#4FD0E9'}
+                        stackSize={3}>
+                        <Button
+                            onPress={() => { console.log('oulala') }}
+                            title="Press me">
+                            You can press me
+                        </Button>
+                    </Swiper>
                 </View>
 
                 <View style={s.centeredView}>
@@ -263,7 +337,7 @@ export default class OTAB extends React.Component {
                             this.setModalVisible(!this.context.FilterShow);
                         }}
                     >
-                        <Filters from={'Home'}/>
+                        <Filters from={'Home'} />
                     </Modal>
                 </View>
             </SafeAreaView>

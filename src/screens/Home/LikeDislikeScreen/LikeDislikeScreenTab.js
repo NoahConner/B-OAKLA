@@ -46,7 +46,7 @@ const LikeDislike = ({ navigation }) => {
                 <View>
                     <View>
                         <SegmentedControl
-                            values={['Like', 'Dislike', 'Contaced']}
+                            values={['Liked', 'Disliked', 'Contaced']}
                             selectedIndex={tripType}
 
                             tintColor={'#000'}

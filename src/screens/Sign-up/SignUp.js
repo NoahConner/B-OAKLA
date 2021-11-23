@@ -3,6 +3,7 @@ import { Image, View, Text, ScrollView, TouchableOpacity, SafeAreaView, TextInpu
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import s from './SignUpStyle';
 import LoginHeader from '../../components/headers/LoginHeader'
+import { Input } from 'react-native-elements';
 
 const SignUp = ({navigation}) => {
     return(
@@ -12,25 +13,32 @@ const SignUp = ({navigation}) => {
                 <View style={s.main}>
 
                     <Text style={s.welcomB}>Hello!</Text>
-                    <Text style={s.signInP}>Please Sign Up to find your favourite home in Oklahoma</Text>
+                    <Text style={[s.signInP,s.newH]}>Please Sign Up to find your favourite home in Oklahoma</Text>
 
                     <View style={s.inpMain}>
-                        <TextInput
-                            style={s.input}
-                            placeholder="Full Name"
-                            keyboardType="default"
+                        <Input
+                            placeholder='Full Name'
+                            inputStyle={s.inpStyle}
+                            inputContainerStyle={s.inpConStyle}
+                            containerStyle={s.conStyle}
                         />
-                        <TextInput
-                            style={s.input}
-                            placeholder="Email Address"
-                            keyboardType="default"
+                        <Input
+                            placeholder='Email Address'
+                            inputStyle={s.inpStyle}
+                            inputContainerStyle={s.inpConStyle}
+                            containerStyle={s.conStyle}
                         />
-                        <TextInput secureTextEntry={true} style={s.input}  placeholder="Password" keyboardType="default" />
+                        <Input
+                            placeholder='Password'
+                            inputStyle={s.inpStyle}
+                            inputContainerStyle={s.inpConStyle}
+                            containerStyle={s.conStyle}
+                        />
                         
                         <View style={s.termsAgree}>
-                            <Text style={s.f12}>by creating an account you agree to our</Text>
+                            <Text style={[s.f12,s.newH]}>by creating an account you agree to our </Text>
                             <TouchableOpacity><Text style={[s.pleaseSignS,s.f12]}>Terms of use</Text></TouchableOpacity>
-                            <Text style={s.f12}> and </Text>
+                            <Text style={[s.f12,s.newH]}> and </Text>
                             <TouchableOpacity><Text style={[s.pleaseSignS,s.f12]}>Privacy Notice</Text></TouchableOpacity>
                         </View>
 
@@ -43,7 +51,7 @@ const SignUp = ({navigation}) => {
                         </TouchableOpacity>
 
                         <View style={s.pleaseSignView}>
-                            <Text>Have an Account? Plaase </Text>
+                            <Text style={s.newH}>Have an Account? Plaase </Text>
                             <TouchableOpacity onPress={() => navigation.navigate('Login')}><Text style={s.pleaseSignS}>Sign In</Text></TouchableOpacity>
                         </View>
                     </View>

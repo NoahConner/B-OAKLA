@@ -42,13 +42,13 @@ export default StyleSheet.create({
         fontFamily:'Poppins-Regular',
         fontSize:moderateScale(14),
         textAlign:'right',
-        marginTop:moderateScale(10),
+        marginTop:moderateScale(0),
     },
     signInBtn:{
         backgroundColor:'#000',
         padding:moderateScale(16),
         borderRadius:50,
-        marginTop:moderateScale(35),
+        marginTop:moderateScale(25),
     },
     signInBtnTxt:{
         color:'#B48618',
@@ -66,5 +66,30 @@ export default StyleSheet.create({
         color:'#29ABE2',
         fontFamily:'Poppins-Medium',
         marginLeft:moderateScale(5)
+    },
+    inpStyle:{
+        fontSize:moderateScale(14),
+        fontFamily:'Poppins-Medium',
+        margin:0,
+        
+    },
+    conStyle:{
+        backgroundColor:'#f1f1f1',
+        height:50,
+        borderRadius:moderateScale(50),
+        overflow: 'hidden',
+        marginBottom:moderateScale(15),
+        paddingTop:moderateScale(3)
+    },
+    inpConStyle:{
+        // backgroundColor:'#00205b',
+        borderBottomColor:'transparent',
+        borderBottomWidth:0,
+        paddingLeft:moderateScale(10),
+    },
+    newH:{
+        fontSize:moderateScale(13),
+        fontFamily:'Poppins-Medium',
+        color:'#666'
     }
 });

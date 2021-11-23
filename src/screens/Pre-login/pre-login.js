@@ -4,7 +4,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
 import styles from './pre-loginStyle';
 import { moderateScale } from 'react-native-size-matters';
 
-import AppLogo from '../../assets/svg/applogo.svg'
+import AppLogo from '../../assets/svg/logo2.svg'
 import FacebookLogo from '../../assets/svg/FacebookLogo.svg'
 import GoogleLogo from '../../assets/svg/GoogleLogo.svg'
 import MailLogo from '../../assets/svg/MailLogo.svg'

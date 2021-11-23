@@ -3,6 +3,7 @@ import { Image, View, Text, ScrollView, TouchableOpacity, SafeAreaView, TextInpu
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import s from './LoginStyle';
 import LoginHeader from '../../components/headers/LoginHeader'
+import { Input } from 'react-native-elements';
 
 const Login = ({navigation}) => {
     return(
@@ -12,15 +13,23 @@ const Login = ({navigation}) => {
                 <View style={s.main}>
 
                     <Text style={s.welcomB}>Welcome Back!</Text>
-                    <Text style={s.signInP}>Please sign In to your account</Text>
+                    <Text style={[s.signInP,s.newH]}>Please sign In to your account</Text>
 
                     <View style={s.inpMain}>
-                        <TextInput
-                            style={s.input}
-                            placeholder="Email Address"
-                            keyboardType="default"
+                        <Input
+                            placeholder='Email Address'
+                            inputStyle={s.inpStyle}
+                            inputContainerStyle={s.inpConStyle}
+                            containerStyle={s.conStyle}
+                            secureTextEntry={true}
                         />
-                        <TextInput secureTextEntry={true} style={s.input}  placeholder="Password" keyboardType="default" />
+                        <Input
+                            placeholder='Password'
+                            inputStyle={s.inpStyle}
+                            inputContainerStyle={s.inpConStyle}
+                            containerStyle={s.conStyle}
+                            secureTextEntry={true}
+                        />
                         <TouchableOpacity onPress={()=> navigation.navigate('ForgotPassword')}>
                             <Text style={s.forgotDiv}>Forgot Password?</Text>
                         </TouchableOpacity>
@@ -35,7 +44,7 @@ const Login = ({navigation}) => {
 
                         <View style={s.pleaseSignView}>
                             {/* <Text>New here? Plaase</Text> <TouchableOpacity><Text style={s.pleaseSignS}>Sign Up</Text></TouchableOpacity> */}
-                            <Text>New here? Please</Text>
+                            <Text style={s.newH}>New here? Please</Text>
                             <TouchableOpacity onPress={() => navigation.navigate('SignUp')}><Text style={s.pleaseSignS}>Sign Up</Text></TouchableOpacity>
                         </View>
                     </View>

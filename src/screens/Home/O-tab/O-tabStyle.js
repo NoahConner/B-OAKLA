@@ -57,15 +57,45 @@ export default StyleSheet.create({
     },
 
     touchDiv:{
-        // backgroundColor:'#00205b',
         backgroundColor: '#00800052',
-        height:'100%'
+        height:100,
     },
-
-
+    hert:{
+        top:moderateScale(130),
+        right:moderateScale(80),
+        zIndex:9999
+    },
+    hereto:{
+        backgroundColor:'transparent',
+        borderRadius:moderateScale(50),
+        height:moderateScale(300),
+        width:moderateScale(200),
+    },
     centeredView: {
         flex: 1,
         zIndex:10000
       },
+
+    //   
+
+    card: {
+        flex: 1,
+        borderRadius: moderateScale(15),
+        borderWidth: 0,
+        borderColor: '#fff',
+        justifyContent: 'center',
+        backgroundColor: 'white'
+      },
+      text: {
+        textAlign: 'center',
+        fontSize: 50,
+        backgroundColor: 'transparent'
+      },
+      done: {
+        textAlign: 'center',
+        fontSize: 30,
+        color: 'white',
+        backgroundColor: 'transparent'
+      }
       
 });

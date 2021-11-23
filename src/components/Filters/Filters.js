@@ -219,7 +219,7 @@ const Filters = ({ navigation,from }) => {
 
                 <View>
                     <SearchBar
-                        placeholder="Type Here..."
+                        placeholder="Search..."
                         containerStyle={s.searchContainer}
                         inputContainerStyle={s.sinpContainer}
                         inputStyle={s.sinp}
@@ -234,15 +234,17 @@ const Filters = ({ navigation,from }) => {
                         <Text style={[s.hTxt, s.mt25]}>Price</Text>
                         <View style={s.dflex}>
                             <View style={s.mInp}>
-                                <Text style={s.mtxt}>Min $</Text>
+                                {/* <Text style={s.mtxt}>Min $</Text> */}
                                 <TextInput
                                     style={s.input}
+                                    placeholder="Min $"
                                 />
                             </View>
                             <View style={s.mInp}>
-                                <Text style={s.mtxt}>Max $</Text>
+                                {/* <Text style={s.mtxt}>Max $</Text> */}
                                 <TextInput
                                     style={s.input}
+                                    placeholder="Max $"
                                 />
                             </View>
                         </View>
@@ -286,7 +288,7 @@ const Filters = ({ navigation,from }) => {
 
                 <View>
                     <View>
-                        <Text style={[s.hTxt, s.mt25]}>Property Type</Text>
+                        <Text style={[s.hTxt, s.mt25]}>Listing Status</Text>
 
                         <View style={[s.dflex, s.checkboxi]}>
                             <View>
@@ -355,21 +357,6 @@ const Filters = ({ navigation,from }) => {
                     </View>
                 </View>
 
-                <View>
-                    <View>
-                        <Text style={[s.hTxt, s.mt25]}>Time on Buy Oklahoma</Text>
-                        <View style={s.picker}>
-                            <RNPickerSelect
-                                onValueChange={(value) => console.log(value)}
-                                items={[
-                                    { label: 'ABC', value: 'ABC' },
-                                    { label: 'ABC', value: 'ABC' },
-                                    { label: 'ABC', value: 'ABC' },
-                                ]}
-                            />
-                        </View>
-                    </View>
-                </View>
 
                 <View style={[s.dflex, s.mt30]}>
                     <TouchableOpacity onPress={() => togglearrData('OpenHouses')}>
@@ -446,7 +433,7 @@ const Filters = ({ navigation,from }) => {
 
                 <View>
                     <View>
-                        <Text style={[s.hTxt, s.mt20]}>Price</Text>
+                        <Text style={[s.hTxt, s.mt20]}>Stories</Text>
                         <View style={s.dflex}>
                             <View style={s.mInp2}>
                                 <View style={[s.picker, s.mt0]}>
@@ -677,7 +664,7 @@ const Filters = ({ navigation,from }) => {
                 ) : from == 'Home' ? (
                     <>
                         <View style={s.dflex}>
-                            <TouchableOpacity style={s.View}>
+                            <TouchableOpacity style={s.View} onPress={() => myContext.setFilterShow(false)}>
                                 <Text style={s.tct}>View</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={s.Skip} onPress={() => myContext.setFilterShow(false)}>
