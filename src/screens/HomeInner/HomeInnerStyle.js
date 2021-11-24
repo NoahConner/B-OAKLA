@@ -64,13 +64,13 @@ export default StyleSheet.create({
         fontSize:moderateScale(18),
         color:'#000',
         fontFamily:'Poppins-Regular',
-        marginTop:moderateScale(30)
+        marginTop:moderateScale(10)
     },
     descPr:{
         fontSize:moderateScale(14),
         color:'#666',
         fontFamily:'Poppins-Regular',
-        marginTop:moderateScale(-20)
+        marginTop:moderateScale(10)
     },
     mt20:{
         marginTop:moderateScale(60),

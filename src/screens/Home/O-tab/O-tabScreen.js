@@ -71,7 +71,9 @@ export default class OTAB extends React.Component {
             cards: [...range(1, 50)],
             swipedAllCards: false,
             swipeDirection: '',
-            cardIndex: 0
+            cardIndex: 0,
+            pidton:new Animated.Value(0),
+            pidtonRed:new Animated.Value(0),
         }
 
         this.rotate = this.position.x.interpolate({
@@ -81,7 +83,8 @@ export default class OTAB extends React.Component {
         })
 
         this.rotateAndTranslate = {
-            transform: [{
+            transform: [
+                {
                 rotate: this.rotate
             },
             ...this.position.getTranslateTransform()
@@ -109,6 +112,13 @@ export default class OTAB extends React.Component {
             outputRange: [1, 0.8, 1],
             extrapolate: 'clamp'
 
+        })
+        
+
+        this.likeOpacity0 = this.state.pidton.interpolate({
+            inputRange: [-20, 0, 20],
+            outputRange: [0, 0, 1],
+            extrapolate: 'clamp'
         })
     }
 
@@ -251,7 +261,67 @@ export default class OTAB extends React.Component {
 
 
     // 8909
+    
 
+
+    getCardsCords = (e,i) => {
+        console.log(e)
+        if(typeof(e) == 'number'){
+            if(e < 0){
+            
+                Animated.timing(
+                    this.state.pidton,
+                    {
+                      toValue: 1,
+                      duration: 650,
+                    }
+                ).start();
+                Animated.timing(
+                    this.state.pidtonRed,
+                    {
+                      toValue: 0,
+                      duration: 0,
+                    }
+                ).start();
+            }
+            if(e > 0){
+                Animated.timing(
+                    this.state.pidtonRed,
+                    {
+                      toValue: 1,
+                      duration: 650,
+                    }
+                ).start();
+                Animated.timing(
+                    this.state.pidton,
+                    {
+                      toValue: 0,
+                      duration: 0,
+                    }
+                ).start();
+            }
+        }else{
+            Animated.timing(
+                this.state.pidtonRed,
+                {
+                  toValue: 0,
+                  duration: 650,
+                }
+            ).start();
+            Animated.timing(
+                this.state.pidton,
+                {
+                  toValue: 0,
+                  duration: 650,
+                }
+            ).start();
+        }
+    }
+    gotoInner = (e) => {
+        if (e) {
+            this.props.navigation.navigate('HomeInner')
+        }
+    }
 
     onSwiped = (type) => {
         console.log(`on swiped ${type}`)
@@ -285,42 +355,64 @@ export default class OTAB extends React.Component {
                     <View style={{ flex: 1 }}>
                         {this.renderUsers(this.props.navigation)}
                     </View>
-                </View>
-                {/* <View style={{ flex: 1}}>
-                    <Swiper
-                        cards={Users}
-                        renderCard={(card) => {
-                            return (
-                                <View style={s.card}>
-                                    <Animated.View style={s.cardDetails}>
-                                        <LinearGradient start={{ x: 1, y: 0 }} end={{ x: 1, y: 1 }} colors={['transparent', 'transparent', '#000']} style={{ height: '100%', borderRadius: 20 }}>
-                                            <View style={s.AddView}>
-                                                <Text style={s.price}>${card.price}</Text>
-                                                <Text style={s.address}>{card.address}</Text>
-                                            </View>
-                                        </LinearGradient>
-                                    </Animated.View>
+                    {/* <View style={s.cardSwipAlb}>
+                        <Animated.View style={s.hearted} >
+                            <TouchableOpacity style={s.heret} onPress={() => this.gotoInner(false)}>
+                                <Icon name="heart-outline" size={moderateScale(25)} color="#B48618" />
+                            </TouchableOpacity>
+                        </Animated.View>
+                        <Swiper
+                            cards={Users}
+                            renderCard={(card,cardindex) => {
+                                return (
+                                    <View style={s.card}>
+                                        <Animated.View style={s.cardDetails} onPress={() => this.gotoInner(true)}>
+                                            <LinearGradient start={{ x: 1, y: 0 }} end={{ x: 1, y: 1 }} colors={['transparent', 'transparent', '#000']} style={{ height: '100%', borderRadius: 20 }}>
+                                                <View style={s.AddView}>
+                                                    <Text style={s.price}>${card.price}</Text>
+                                                    <Text style={s.address}>{card.address}</Text>
+                                                </View>
+                                            </LinearGradient>
+                                        </Animated.View>
 
-                                    <Animated.View style={s.hearted}>
-                                        <TouchableOpacity style={s.heret}>
-                                            <Icon name="heart-outline" size={moderateScale(25)} color="#B48618" />
-                                        </TouchableOpacity>
-                                    </Animated.View>
-                                    <Image
-                                        source={{ uri: card.uri }}
-                                        style={{ height: '100%', width: '100%', resizeMode: 'cover', borderRadius: moderateScale(20) }}
-                                        PlaceholderContent={<ActivityIndicator />}
-                                    />
-                                </View>
-                            )
-                        }}
-                        onSwiped={(cardIndex) => { console.log(cardIndex) }}
-                        onSwipedAll={() => { console.log('onSwipedAll') }}
-                        cardIndex={0}
-                        backgroundColor={'#4FD0E9'}
-                        stackSize={3}>
-                    </Swiper>
-                </View> */}
+                                        <Animated.View style={{ opacity: this.state.pidton, position: 'absolute', top: moderateScale(0), left: moderateScale(0), zIndex: 1000, backgroundColor: '#00800052', height: '100%', width: '100%', borderRadius: moderateScale(20) }}>
+                                        </Animated.View>
+
+                                        <Animated.View style={{ opacity: this.state.pidtonRed, position: 'absolute', top: moderateScale(0), left: moderateScale(0), zIndex: 1000, backgroundColor: '#ff000052', height: '100%', width: '100%', borderRadius: moderateScale(20) }}>
+
+                                        </Animated.View>
+                                        <Image
+                                            source={{ uri: card.uri }}
+                                            style={{ height: '100%', width: '100%', resizeMode: 'cover', borderRadius: moderateScale(15) }}
+                                            PlaceholderContent={<ActivityIndicator />}
+
+                                        />
+                                    </View>
+
+                                )
+                            }}
+                            backgroundColor={'transparent'}
+                            cardVerticalMargin={0}
+                            stackSize={2}
+                            infinite={true}
+                            verticalSwipe={false}
+                            cardStyle={{
+                                height: '100%',
+                                paddingVertical: 10,
+                            }}
+                            onSwipedLeft={() => this.props.navigation.navigate('HomeInner')}
+                            onTapCard={() => this.gotoInner(true)}
+                            animateCardOpacity={true}
+                            onSwiping={(e)=> this.getCardsCords(e) }
+                            onSwiped={(e) => this.getCardsCords(false,e)}
+                            onSwipedAborted={(e) => this.getCardsCords(false,e)}
+                            showSecondCard={false}
+                        >
+                        </Swiper>
+                    </View> */}
+
+                </View>
+
 
                 <View style={s.centeredView}>
                     <Modal

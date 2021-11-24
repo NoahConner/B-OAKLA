@@ -686,7 +686,7 @@ const Filters = ({ navigation,from }) => {
                 from == 'search' ? (
                     <>
                         <View style={s.dflex}>
-                            <TouchableOpacity style={[s.View,s.allf]}>
+                            <TouchableOpacity style={[s.View,s.allf]} onPress={() => myContext.setFilterShow(false)}>
                                 <Text style={s.tct}>View 54 Results</Text>
                             </TouchableOpacity>
                         </View>
