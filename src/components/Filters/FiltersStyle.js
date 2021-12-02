@@ -131,7 +131,8 @@ export default StyleSheet.create({
         backgroundColor:'#f1f1f1',
         marginTop:moderateScale(10),
         borderRadius:moderateScale(50),
-        fontFamily:'Poppins-Medium'
+        fontFamily:'Poppins-Medium',
+        color:'#000'
     },
     mustHave:{
         color:'#666',
@@ -185,4 +186,27 @@ export default StyleSheet.create({
         fontFamily:'Poppins-Medium',
         lineHeight:moderateScale(20)
     },
+    inpStyle:{
+        fontSize:moderateScale(14),
+        fontFamily:'Poppins-Medium',
+        margin:0,
+        
+    },
+    conStyle:{
+        backgroundColor:'#f1f1f1',
+        height:50,
+        borderRadius:moderateScale(50),
+        overflow: 'hidden',
+        marginBottom:moderateScale(15),
+        paddingTop:moderateScale(3)
+    },
+    inpConStyle:{
+        // backgroundColor:'#00205b',
+        borderBottomColor:'transparent',
+        borderBottomWidth:0,
+        paddingLeft:moderateScale(10),
+    },
+    mt15:{
+        marginTop:moderateScale(15)
+    }
 })

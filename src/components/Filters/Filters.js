@@ -8,6 +8,7 @@ import { SearchBar, CheckBox } from 'react-native-elements';
 import RNPickerSelect from 'react-native-picker-select';
 import ToggleSwitch from 'toggle-switch-react-native'
 import AppContext from '../Appcontext/contextApi';
+import { Input } from 'react-native-elements';
 
 var filtersdata = [
     {
@@ -231,16 +232,22 @@ const Filters = ({ navigation,from }) => {
                         <View style={s.dflex}>
                             <View style={s.mInp}>
                                 {/* <Text style={s.mtxt}>Min $</Text> */}
-                                <TextInput
-                                    style={s.input}
-                                    placeholder="Min $"
+                                <Input
+                                    placeholder='Min $'
+                                    inputStyle={s.inpStyle}
+                                    inputContainerStyle={s.inpConStyle}
+                                    containerStyle={s.conStyle}
+                                    secureTextEntry={true}
                                 />
                             </View>
                             <View style={s.mInp}>
                                 {/* <Text style={s.mtxt}>Max $</Text> */}
-                                <TextInput
-                                    style={s.input}
-                                    placeholder="Max $"
+                                <Input
+                                    placeholder='Max $'
+                                    inputStyle={s.inpStyle}
+                                    inputContainerStyle={s.inpConStyle}
+                                    containerStyle={s.conStyle}
+                                    secureTextEntry={true}
                                 />
                             </View>
                         </View>
@@ -249,7 +256,7 @@ const Filters = ({ navigation,from }) => {
 
                 <View>
                     <View>
-                        <Text style={[s.hTxt, s.mt25]}>Beds</Text>
+                        <Text style={[s.hTxt, s.mt15]}>Beds</Text>
                         <View style={[s.dflex, s.chipset]}>
                             {
                                 dataTer(0, 'beds')

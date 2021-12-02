@@ -72,8 +72,10 @@ export default class OTAB extends React.Component {
             swipedAllCards: false,
             swipeDirection: '',
             cardIndex: 0,
-            pidton:new Animated.Value(0),
-            pidtonRed:new Animated.Value(0),
+            pidton: new Animated.Value(0),
+            pidtonRed: new Animated.Value(0),
+            opacity: new Animated.Value(1),
+            swipedCard: 0
         }
 
         this.rotate = this.position.x.interpolate({
@@ -85,9 +87,9 @@ export default class OTAB extends React.Component {
         this.rotateAndTranslate = {
             transform: [
                 {
-                rotate: this.rotate
-            },
-            ...this.position.getTranslateTransform()
+                    rotate: this.rotate
+                },
+                ...this.position.getTranslateTransform()
             ]
         }
 
@@ -113,7 +115,7 @@ export default class OTAB extends React.Component {
             extrapolate: 'clamp'
 
         })
-        
+
 
         this.likeOpacity0 = this.state.pidton.interpolate({
             inputRange: [-20, 0, 20],
@@ -261,58 +263,85 @@ export default class OTAB extends React.Component {
 
 
     // 8909
-    
 
+    onSwiped = (type) => {
+        console.log(`on swiped ${type}`)
+        if (type != undefined) {
+            this.setState({ swipedCard: type + 1 })
+        }
+    }
 
-    getCardsCords = (e,i) => {
-        console.log(e)
-        if(typeof(e) == 'number'){
-            if(e < 0){
-            
+    getCardsCords = (e, i) => {
+        this.onSwiped(i)
+        if (typeof (e) == 'number') {
+            if (e < 0) {
+
                 Animated.timing(
                     this.state.pidton,
                     {
-                      toValue: 1,
-                      duration: 650,
+                        toValue: 1,
+                        duration: 130,
                     }
                 ).start();
                 Animated.timing(
                     this.state.pidtonRed,
                     {
-                      toValue: 0,
-                      duration: 0,
+                        toValue: 0,
+                        duration: 0,
+                    }
+                ).start();
+
+                Animated.timing(
+                    this.state.opacity,
+                    {
+                        toValue: 0,
+                        duration: 150,
                     }
                 ).start();
             }
-            if(e > 0){
+            if (e > 0) {
                 Animated.timing(
                     this.state.pidtonRed,
                     {
-                      toValue: 1,
-                      duration: 650,
+                        toValue: 1,
+                        duration: 130,
                     }
                 ).start();
                 Animated.timing(
                     this.state.pidton,
                     {
-                      toValue: 0,
-                      duration: 0,
+                        toValue: 0,
+                        duration: 0,
+                    }
+                ).start();
+                Animated.timing(
+                    this.state.opacity,
+                    {
+                        toValue: 0,
+                        duration: 150,
                     }
                 ).start();
             }
-        }else{
+        } else {
             Animated.timing(
                 this.state.pidtonRed,
                 {
-                  toValue: 0,
-                  duration: 650,
+                    toValue: 0,
+                    duration: 0,
                 }
             ).start();
             Animated.timing(
                 this.state.pidton,
                 {
-                  toValue: 0,
-                  duration: 650,
+                    toValue: 0,
+                    duration: 0,
+                }
+            ).start();
+            Animated.timing(
+                this.state.opacity,
+                {
+                    toValue: 1,
+                    duration: 200,
                 }
             ).start();
         }
@@ -321,10 +350,6 @@ export default class OTAB extends React.Component {
         if (e) {
             this.props.navigation.navigate('HomeInner')
         }
-    }
-
-    onSwiped = (type) => {
-        console.log(`on swiped ${type}`)
     }
 
     onSwipedAllCards = () => {
@@ -352,18 +377,15 @@ export default class OTAB extends React.Component {
                             <Icon name="information-circle-outline" size={moderateScale(25)} color="#666" />
                         </TouchableOpacity>
                     </View>
-                    <View style={{ flex: 1 }}>
-                        {this.renderUsers(this.props.navigation)}
-                    </View>
-                    {/* <View style={s.cardSwipAlb}>
-                        <Animated.View style={s.hearted} >
+                    <View style={s.cardSwipAlb}>
+                        <Animated.View style={{ ...s.hearted, opacity: this.state.opacity }} >
                             <TouchableOpacity style={s.heret} onPress={() => this.gotoInner(false)}>
                                 <Icon name="heart-outline" size={moderateScale(25)} color="#B48618" />
                             </TouchableOpacity>
                         </Animated.View>
                         <Swiper
                             cards={Users}
-                            renderCard={(card,cardindex) => {
+                            renderCard={(card, cardindex) => {
                                 return (
                                     <View style={s.card}>
                                         <Animated.View style={s.cardDetails} onPress={() => this.gotoInner(true)}>
@@ -375,12 +397,15 @@ export default class OTAB extends React.Component {
                                             </LinearGradient>
                                         </Animated.View>
 
-                                        <Animated.View style={{ opacity: this.state.pidton, position: 'absolute', top: moderateScale(0), left: moderateScale(0), zIndex: 1000, backgroundColor: '#00800052', height: '100%', width: '100%', borderRadius: moderateScale(20) }}>
-                                        </Animated.View>
+                                        {
+                                            cardindex == this.state.swipedCard ? (
+                                                <>
+                                                    <Animated.View style={{ opacity: this.state.pidtonRed, position: 'absolute', top: moderateScale(0), left: moderateScale(0), zIndex: 1000, backgroundColor: '#00800052', height: '100%', width: '100%', borderRadius: moderateScale(20) }}></Animated.View>
+                                                    <Animated.View style={{ opacity: this.state.pidton, position: 'absolute', top: moderateScale(0), left: moderateScale(0), zIndex: 1000, backgroundColor: '#ff000052', height: '100%', width: '100%', borderRadius: moderateScale(20) }}></Animated.View>
+                                                </>
+                                            ) : null
+                                        }
 
-                                        <Animated.View style={{ opacity: this.state.pidtonRed, position: 'absolute', top: moderateScale(0), left: moderateScale(0), zIndex: 1000, backgroundColor: '#ff000052', height: '100%', width: '100%', borderRadius: moderateScale(20) }}>
-
-                                        </Animated.View>
                                         <Image
                                             source={{ uri: card.uri }}
                                             style={{ height: '100%', width: '100%', resizeMode: 'cover', borderRadius: moderateScale(15) }}
@@ -400,16 +425,15 @@ export default class OTAB extends React.Component {
                                 height: '100%',
                                 paddingVertical: 10,
                             }}
-                            onSwipedLeft={() => this.props.navigation.navigate('HomeInner')}
+                            onSwipedRight={() => this.props.navigation.navigate('HomeInner')}
                             onTapCard={() => this.gotoInner(true)}
-                            animateCardOpacity={true}
-                            onSwiping={(e)=> this.getCardsCords(e) }
-                            onSwiped={(e) => this.getCardsCords(false,e)}
-                            onSwipedAborted={(e) => this.getCardsCords(false,e)}
-                            showSecondCard={false}
+                            onSwiping={(e) => this.getCardsCords(e)}
+                            onSwiped={(e) => this.getCardsCords(false, e)}
+                            onSwipedAborted={(e) => this.getCardsCords(false, e)}
+                        // showSecondCard={false}
                         >
                         </Swiper>
-                    </View> */}
+                    </View>
 
                 </View>
 

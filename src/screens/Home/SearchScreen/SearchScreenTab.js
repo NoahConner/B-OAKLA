@@ -16,6 +16,8 @@ import MapView, { PROVIDER_GOOGLE, Marker, ProviderPropType } from 'react-native
 import LinearGradient from 'react-native-linear-gradient';
 import Filters from '../../../components/Filters/Filters'
 import AppContext from '../../../components/Appcontext/contextApi';
+import Swiper from 'react-native-deck-swiper'
+import { Input } from 'react-native-elements';
 
 const { width, height } = Dimensions.get('window');
 
@@ -77,10 +79,6 @@ var filtersdata = [
         'baths': [
             {
                 'name': 'Any',
-                'selected': false
-            },
-            {
-                'name': 'Studio',
                 'selected': false
             },
             {
@@ -174,6 +172,12 @@ const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 const SPACE = 0.01;
 
+// demo purposes only
+function* range(start, end) {
+    for (let i = start; i <= end; i++) {
+        yield i
+    }
+}
 export default class Search extends React.Component {
 
     constructor() {
@@ -185,7 +189,16 @@ export default class Search extends React.Component {
             arrData: filtersdata,
             priseFilter: false,
             propertyFilter: false,
-            bedBathFilter: false
+            bedBathFilter: false,
+
+            cards: [...range(1, 50)],
+            swipedAllCards: false,
+            swipeDirection: '',
+            cardIndex: 0,
+            pidton: new Animated.Value(0),
+            pidtonRed: new Animated.Value(0),
+            opacity: new Animated.Value(1),
+            swipedCard: 0
         }
         this.position = new Animated.ValueXY()
         this.rotate = this.position.x.interpolate({
@@ -393,6 +406,108 @@ export default class Search extends React.Component {
         console.log(this.context.FilterShow)
     }
 
+
+    // 8909
+
+    onSwiped = (type) => {
+        console.log(`on swiped ${type}`)
+        if (type != undefined) {
+            this.setState({ swipedCard: type + 1 })
+        }
+    }
+
+    getCardsCords = (e, i) => {
+        this.onSwiped(i)
+        if (typeof (e) == 'number') {
+            if (e < 0) {
+
+                Animated.timing(
+                    this.state.pidton,
+                    {
+                        toValue: 1,
+                        duration: 130,
+                    }
+                ).start();
+                Animated.timing(
+                    this.state.pidtonRed,
+                    {
+                        toValue: 0,
+                        duration: 0,
+                    }
+                ).start();
+
+                Animated.timing(
+                    this.state.opacity,
+                    {
+                        toValue: 0,
+                        duration: 150,
+                    }
+                ).start();
+            }
+            if (e > 0) {
+                Animated.timing(
+                    this.state.pidtonRed,
+                    {
+                        toValue: 1,
+                        duration: 130,
+                    }
+                ).start();
+                Animated.timing(
+                    this.state.pidton,
+                    {
+                        toValue: 0,
+                        duration: 0,
+                    }
+                ).start();
+                Animated.timing(
+                    this.state.opacity,
+                    {
+                        toValue: 0,
+                        duration: 150,
+                    }
+                ).start();
+            }
+        } else {
+            Animated.timing(
+                this.state.pidtonRed,
+                {
+                    toValue: 0,
+                    duration: 0,
+                }
+            ).start();
+            Animated.timing(
+                this.state.pidton,
+                {
+                    toValue: 0,
+                    duration: 0,
+                }
+            ).start();
+            Animated.timing(
+                this.state.opacity,
+                {
+                    toValue: 1,
+                    duration: 200,
+                }
+            ).start();
+        }
+    }
+    gotoInner = (e) => {
+        if (e) {
+            this.props.navigation.navigate('HomeInner')
+        }
+    }
+
+    onSwipedAllCards = () => {
+        this.setState({
+            swipedAllCards: true
+        })
+    };
+
+    swipeLeft = () => {
+        this.swiper.swipeLeft()
+    };
+
+
     static contextType = AppContext;
 
     render() {
@@ -455,16 +570,22 @@ export default class Search extends React.Component {
                                                 <Text style={[s.hTxt]}>Price</Text>
                                                 <View style={s.dflex}>
                                                     <View style={s.mInp}>
-                                                        <Text style={s.mtxt}>Min $</Text>
-                                                        <TextInput
-                                                            style={s.input}
-                                                        />
+                                                    <Input
+                                    placeholder='Min $'
+                                    inputStyle={s.inpStyle}
+                                    inputContainerStyle={s.inpConStyle}
+                                    containerStyle={s.conStyle}
+                                    secureTextEntry={true}
+                                />
                                                     </View>
                                                     <View style={s.mInp}>
-                                                        <Text style={s.mtxt}>Max $</Text>
-                                                        <TextInput
-                                                            style={s.input}
-                                                        />
+                                                    <Input
+                                    placeholder='Min $'
+                                    inputStyle={s.inpStyle}
+                                    inputContainerStyle={s.inpConStyle}
+                                    containerStyle={s.conStyle}
+                                    secureTextEntry={true}
+                                />
                                                     </View>
                                                 </View>
                                                 <View style={[s.flexRow, s.mt20]}>
@@ -630,7 +751,65 @@ export default class Search extends React.Component {
                         <>
                             <View style={s.listing}>
                                 <View style={{ flex: 1 }}>
-                                    {this.renderUsers()}
+                                    {/* {this.renderUsers()} */}
+                                    <View style={s.cardSwipAlb}>
+                                        <Animated.View style={{ ...s.hearted, opacity: this.state.opacity }} >
+                                            <TouchableOpacity style={s.heret} onPress={() => this.gotoInner(false)}>
+                                                <Iconicons name="heart-outline" size={moderateScale(25)} color="#B48618" />
+                                            </TouchableOpacity>
+                                        </Animated.View>
+                                        <Swiper
+                                            cards={Users}
+                                            renderCard={(card, cardindex) => {
+                                                return (
+                                                    <View style={s.card}>
+                                                        <Animated.View style={s.cardDetails} onPress={() => this.gotoInner(true)}>
+                                                            <LinearGradient start={{ x: 1, y: 0 }} end={{ x: 1, y: 1 }} colors={['transparent', 'transparent', '#000']} style={{ height: '100%', borderRadius: 20 }}>
+                                                                <View style={s.AddView}>
+                                                                    <Text style={s.price}>${card.price}</Text>
+                                                                    <Text style={s.address}>{card.address}</Text>
+                                                                </View>
+                                                            </LinearGradient>
+                                                        </Animated.View>
+
+                                                        {
+                                                            cardindex == this.state.swipedCard ? (
+                                                                <>
+                                                                    <Animated.View style={{ opacity: this.state.pidtonRed, position: 'absolute', top: moderateScale(0), left: moderateScale(0), zIndex: 1000, backgroundColor: '#00800052', height: '100%', width: '100%', borderRadius: moderateScale(20) }}></Animated.View>
+                                                                    <Animated.View style={{ opacity: this.state.pidton, position: 'absolute', top: moderateScale(0), left: moderateScale(0), zIndex: 1000, backgroundColor: '#ff000052', height: '100%', width: '100%', borderRadius: moderateScale(20) }}></Animated.View>
+                                                                </>
+                                                            ) : null
+                                                        }
+
+                                                        <Image
+                                                            source={{ uri: card.uri }}
+                                                            style={{ height: '100%', width: '100%', resizeMode: 'cover', borderRadius: moderateScale(15) }}
+                                                            PlaceholderContent={<ActivityIndicator />}
+
+                                                        />
+                                                    </View>
+
+                                                )
+                                            }}
+                                            backgroundColor={'transparent'}
+                                            marginTop={30}
+                                            cardVerticalMargin={0}
+                                            stackSize={2}
+                                            infinite={true}
+                                            verticalSwipe={false}
+                                            cardStyle={{
+                                                height: '100%',
+                                                paddingVertical: 10,
+                                            }}
+                                            onSwipedRight={() => this.props.navigation.navigate('HomeInner')}
+                                            onTapCard={() => this.gotoInner(true)}
+                                            onSwiping={(e) => this.getCardsCords(e)}
+                                            onSwiped={(e) => this.getCardsCords(false, e)}
+                                            onSwipedAborted={(e) => this.getCardsCords(false, e)}
+                                        // showSecondCard={false}
+                                        >
+                                        </Swiper>
+                                    </View>
                                 </View>
                             </View>
                         </>

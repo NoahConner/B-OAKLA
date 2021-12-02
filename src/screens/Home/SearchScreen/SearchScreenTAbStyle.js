@@ -81,21 +81,7 @@ export default StyleSheet.create({
     mr30: {
         left: moderateScale(120)
     },
-    hearted: {
-        position: 'absolute',
-        top: moderateScale(8),
-        right: moderateScale(8),
-        zIndex: 9999
-    },
-    heret: {
-        backgroundColor: '#ffffff50',
-        borderRadius: moderateScale(50),
-        height: moderateScale(40),
-        width: moderateScale(40),
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingTop: 3
-    },
+
     mapICon: {
         backgroundColor: '#f1f1f1',
         paddingHorizontal: moderateScale(18),
@@ -212,8 +198,8 @@ export default StyleSheet.create({
     },
     cardDetails: {
         position: 'absolute',
-        top: moderateScale(20),
-        left: moderateScale(20),
+        top: moderateScale(0),
+        left: moderateScale(0),
         height: '100%',
         width: '100%',
         zIndex: 900
@@ -236,8 +222,8 @@ export default StyleSheet.create({
     },
     hearted: {
         position: 'absolute',
-        top: moderateScale(30),
-        right: moderateScale(30),
+        top: moderateScale(50),
+        right: moderateScale(32),
         zIndex: 999
     },
     heret: {
@@ -303,7 +289,6 @@ export default StyleSheet.create({
         color: '#fff',
         textAlign: 'center',
         fontSize: moderateScale(14),
-        // marginRight:moderateScale(0)
     },
     viewRes: {
         backgroundColor: '#000',
@@ -337,5 +322,55 @@ export default StyleSheet.create({
     },
     twhite:{
         color:'#fff'
-    }
+    },
+
+
+    card: {
+        flex: 1,
+        borderRadius: moderateScale(15),
+        borderWidth: 0,
+        borderColor: 'transparent',
+        justifyContent: 'center',
+        backgroundColor: 'white',
+        overflow:'hidden'
+      },
+      text: {
+        textAlign: 'center',
+        fontSize: 50,
+        backgroundColor: 'transparent'
+      },
+      done: {
+        textAlign: 'center',
+        fontSize: 30,
+        color: 'white',
+        backgroundColor: 'transparent'
+      },
+      cardSwipAlb:{
+          width:'100%',
+          height:moderateScale(windowHeight-225),
+          paddingHorizontal:moderateScale(20),
+          paddingTop:moderateScale(10),
+          overflow:'hidden',
+          position:'relative'
+      },
+      inpStyle:{
+        fontSize:moderateScale(14),
+        fontFamily:'Poppins-Medium',
+        margin:0,
+        
+    },
+    conStyle:{
+        backgroundColor:'#f1f1f1',
+        height:50,
+        borderRadius:moderateScale(50),
+        overflow: 'hidden',
+        marginBottom:moderateScale(15),
+        paddingTop:moderateScale(3)
+    },
+    inpConStyle:{
+        // backgroundColor:'#00205b',
+        borderBottomColor:'transparent',
+        borderBottomWidth:0,
+        paddingLeft:moderateScale(10),
+    },
 });
