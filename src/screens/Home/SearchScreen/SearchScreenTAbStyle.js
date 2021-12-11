@@ -373,4 +373,18 @@ export default StyleSheet.create({
         borderBottomWidth:0,
         paddingLeft:moderateScale(10),
     },
+    text: {
+        alignSelf: 'center',
+        paddingVertical: 10,
+        color: '#000',
+        fontWeight: 'bold', fontSize: 16
+    },
+    title: {
+        fontSize: 30,
+    },
+    sliderOne: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '100%'
+    },
 });

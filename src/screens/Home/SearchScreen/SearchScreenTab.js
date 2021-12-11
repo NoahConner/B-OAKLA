@@ -18,9 +18,12 @@ import Filters from '../../../components/Filters/Filters'
 import AppContext from '../../../components/Appcontext/contextApi';
 import Swiper from 'react-native-deck-swiper'
 import { Input } from 'react-native-elements';
+import MultiSlider from '@ptomasroos/react-native-multi-slider';
+import CustomLabel from '../../../components/customs/CustomLabel';
+import CustomMarker from '../../../components/customs/CustomMarker';
 
 const { width, height } = Dimensions.get('window');
-
+const windowWidth = Dimensions.get('window').width;
 var arr = [
     {
         'image': 'https://wallpapercave.com/wp/wp2124316.jpg',
@@ -114,19 +117,23 @@ var filtersdata = [
                 'selected': false
             },
             {
-                'name': 'Mobile / Mfd',
-                'selected': false
-            },
-            {
                 'name': 'Multi-Family',
                 'selected': false
             },
             {
-                'name': 'Farm / Ranches',
+                'name': 'Manufactured/Mobile',
+                'selected': false
+            },
+            {
+                'name': 'Farm/Ranches',
                 'selected': false
             },
             {
                 'name': 'Land',
+                'selected': false
+            },
+            {
+                'name': 'Other',
                 'selected': false
             },
         ]
@@ -190,7 +197,6 @@ export default class Search extends React.Component {
             priseFilter: false,
             propertyFilter: false,
             bedBathFilter: false,
-
             cards: [...range(1, 50)],
             swipedAllCards: false,
             swipeDirection: '',
@@ -198,7 +204,9 @@ export default class Search extends React.Component {
             pidton: new Animated.Value(0),
             pidtonRed: new Animated.Value(0),
             opacity: new Animated.Value(1),
-            swipedCard: 0
+            swipedCard: 0,
+            nonCollidingMultiSliderValue: [1000000, 9000000],
+            polo:[1000000, 9000000]
         }
         this.position = new Animated.ValueXY()
         this.rotate = this.position.x.interpolate({
@@ -507,6 +515,11 @@ export default class Search extends React.Component {
         this.swiper.swipeLeft()
     };
 
+    nonCollidingMultiSliderValuesChange = (values) => {
+        // console.log(values)
+        this.setState({polo:values});
+        console.log(this.state.polo)
+    }
 
     static contextType = AppContext;
 
@@ -566,26 +579,26 @@ export default class Search extends React.Component {
                                 {
                                     this.state.priseFilter ? (
                                         <>
-                                            <View style={[s.priceDiv, s.pdo]}>
+                                            {/* <View style={[s.priceDiv, s.pdo]}>
                                                 <Text style={[s.hTxt]}>Price</Text>
                                                 <View style={s.dflex}>
                                                     <View style={s.mInp}>
-                                                    <Input
-                                    placeholder='Min $'
-                                    inputStyle={s.inpStyle}
-                                    inputContainerStyle={s.inpConStyle}
-                                    containerStyle={s.conStyle}
-                                    secureTextEntry={true}
-                                />
+                                                        <Input
+                                                            placeholder='Min $'
+                                                            inputStyle={s.inpStyle}
+                                                            inputContainerStyle={s.inpConStyle}
+                                                            containerStyle={s.conStyle}
+                                                            secureTextEntry={true}
+                                                        />
                                                     </View>
                                                     <View style={s.mInp}>
-                                                    <Input
-                                    placeholder='Min $'
-                                    inputStyle={s.inpStyle}
-                                    inputContainerStyle={s.inpConStyle}
-                                    containerStyle={s.conStyle}
-                                    secureTextEntry={true}
-                                />
+                                                        <Input
+                                                            placeholder='Min $'
+                                                            inputStyle={s.inpStyle}
+                                                            inputContainerStyle={s.inpConStyle}
+                                                            containerStyle={s.conStyle}
+                                                            secureTextEntry={true}
+                                                        />
                                                     </View>
                                                 </View>
                                                 <View style={[s.flexRow, s.mt20]}>
@@ -598,6 +611,57 @@ export default class Search extends React.Component {
                                                     <TouchableOpacity style={s.viewRes}>
                                                         <Text style={[s.cancelF, s.Vres]}>View 56 Results</Text>
                                                     </TouchableOpacity>
+                                                </View>
+                                            </View> */}
+                                            <View>
+                                                <Text style={[s.hTxt, s.mt25]}>Price</Text>
+                                                <View style={s.dflex}>
+                                                    <View style={{ justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+                                                        <MultiSlider
+                                                            values={[
+                                                                this.state.polo[0],
+                                                                this.state.polo[1],
+                                                            ]}
+                                                            sliderLength={280}
+                                                            onValuesChange={this.nonCollidingMultiSliderValuesChange}
+                                                            min={50000}
+                                                            max={10000000}
+                                                            step={25000}
+                                                            allowOverlap={false}
+                                                            snapped
+                                                            minMarkerOverlapDistance={20}
+                                                            customMarker={CustomMarker}
+                                                            customLabel={CustomLabel}
+                                                            selectedStyle={{
+                                                                backgroundColor: '#000',
+                                                            }}
+                                                            unselectedStyle={{
+                                                                backgroundColor: 'lightgrey',
+                                                            }}
+                                                            containerStyle={{
+                                                                height: 20,
+                                                                marginTop: 20,
+
+                                                            }}
+                                                            trackStyle={{
+                                                                height: 10,
+                                                                backgroundColor: '#000',
+                                                                borderRadius: 10,
+                                                            }}
+                                                            touchDimensions={{
+                                                                height: 60,
+                                                                width: 40,
+                                                                borderRadius: 20,
+                                                                slipDisplacement: 40,
+                                                            }}
+                                                            sliderLength={moderateScale(windowWidth - 90)}
+                                                        />
+                                                        <View style={s.sliderOne}>
+                                                            <Text style={s.text}>{this.state.polo[0]} </Text>
+                                                            <Text style={s.text}>{this.state.polo
+                                                            [1]}</Text>
+                                                        </View>
+                                                    </View>
                                                 </View>
                                             </View>
                                         </>
