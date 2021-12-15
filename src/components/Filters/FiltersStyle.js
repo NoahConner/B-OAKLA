@@ -115,9 +115,9 @@ export default StyleSheet.create({
         justifyContent:'flex-start'
     },
     radioChk:{
-        fontFamily:'Poppins-Regular',
-        color:'#000',
-        fontSize:16
+        // fontFamily:'Poppins-Regular',
+        // color:'#000',
+        // fontSize:16,
     },
     radioCOnt:{
         backgroundColor:'transparent',

@@ -991,8 +991,8 @@ const Filters = ({ navigation, from }) => {
                                     sliderLength={moderateScale(windowWidth - 115)}
                                 />
                                 <View style={s.sliderOne}>
-                                    <Text style={s.text}>{homeSize[0]} </Text>
-                                    <Text style={s.text}>{homeSize[1]}</Text>
+                                    <Text style={s.text}>{homeSize[0]} sqft</Text>
+                                    <Text style={s.text}>{homeSize[1]} sqft</Text>
                                 </View>
                             </View>
                         </View>
@@ -1067,7 +1067,7 @@ const Filters = ({ navigation, from }) => {
                     </View>
                 </View> */}
 
-                <View style={[s.dflex, s.mt30]}>
+                {/* <View style={[s.dflex, s.mt30]}>
                     <TouchableOpacity onPress={() => togglearrData('MustHaveGarage')}>
                         <Text style={s.mustHave}>Must Have Garage</Text>
                     </TouchableOpacity>
@@ -1178,7 +1178,7 @@ const Filters = ({ navigation, from }) => {
                             onToggle={() => togglearrData('GreenHome')}
                         />
                     </View>
-                </View>
+                </View> */}
 
                 <View>
                     {renderDens()}

@@ -73,7 +73,7 @@ var filtersdata = [
                 'selected': false
             },
             {
-                'name': '5',
+                'name': '5+',
                 'selected': false
             },
         ]
@@ -85,23 +85,23 @@ var filtersdata = [
                 'selected': false
             },
             {
-                'name': '1',
+                'name': '1+',
                 'selected': false
             },
             {
-                'name': '2',
+                'name': '2+',
                 'selected': false
             },
             {
-                'name': '3',
+                'name': '3+',
                 'selected': false
             },
             {
-                'name': '4',
+                'name': '4+',
                 'selected': false
             },
             {
-                'name': '5',
+                'name': '5+',
                 'selected': false
             },
         ]
