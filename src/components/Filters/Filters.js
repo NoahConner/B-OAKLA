@@ -121,7 +121,7 @@ var filtersdata = [
         ]
     },
     {
-        'garage' : [
+        'garage': [
             {
                 'name': '1',
                 'selected': false
@@ -141,7 +141,7 @@ var filtersdata = [
         ]
     },
     {
-        'parking' : [
+        'parking': [
             {
                 'name': 'Carport',
                 'selected': false
@@ -156,8 +156,8 @@ var filtersdata = [
 
 var deni = [
     {
-        'name':'Office/Den',
-        'data':[
+        'name': 'Office/Den',
+        'data': [
             {
                 'name': 'Dining Room',
                 'selected': false
@@ -181,8 +181,8 @@ var deni = [
         ]
     },
     {
-        'name':'The Lot',
-        'data':[
+        'name': 'The Lot',
+        'data': [
             {
                 'name': 'Pool',
                 'selected': false
@@ -214,8 +214,8 @@ var deni = [
         ]
     },
     {
-        'name':'The Views',
-        'data':[
+        'name': 'The Views',
+        'data': [
             {
                 'name': 'Corner Lot',
                 'selected': false
@@ -223,15 +223,15 @@ var deni = [
             {
                 'name': 'Waterfront',
                 'selected': false
-            },{
+            }, {
                 'name': 'Backs to Greenspace',
                 'selected': false
             }
-            ,{
+            , {
                 'name': 'Cul-de-sac',
                 'selected': false
             }
-            ,{
+            , {
                 'name': 'Lake View',
                 'selected': false
             },
@@ -242,8 +242,8 @@ var deni = [
         ]
     },
     {
-        'name':'The Neighborhood',
-        'data':[
+        'name': 'The Neighborhood',
+        'data': [
             {
                 'name': 'Pool',
                 'selected': false
@@ -308,7 +308,7 @@ const Filters = ({ navigation, from }) => {
     const [PendingContingentSL, sePendingContingentSL] = useState(false)
     const [NewLS, seNewLS] = useState(false)
     const [denio, setdenio] = useState([deni])
-    const [acres,setacres] = useState('Acres')
+    const [acres, setacres] = useState('Acres')
     const [acres2, setacres2] = useState('Acres')
 
     const myContext = useContext(AppContext)
@@ -342,16 +342,6 @@ const Filters = ({ navigation, from }) => {
     const lotSizes = (values) => {
         setlotSize(values);
         console.log(values[0])
-        // if(values[0] > 43560){
-        //     setacres('Acres')
-        // }else{
-        //     setacres('sqft')
-        // }
-        // if(values[1] > 43560){
-        //     setacres2('Acres')
-        // }else{
-        //     setacres2('sqft')
-        // }
     }
 
     const [selectedItems, setselectedItems] = useState([])
@@ -360,24 +350,24 @@ const Filters = ({ navigation, from }) => {
         setselectedItems(e)
     }
 
-    const changeDen = (val1,i,val2,io) =>{
+    const changeDen = (val1, i, val2, io) => {
         denio[0][i].data[io].selected = !denio[0][i].data[io].selected;
         setdenio([...denio, denio])
         console.log(denio)
     }
 
     const renderDens = () => {
-        return(
-            denio[0].map((val,i)=>{
-                return(
-                <View key={i}>
-                    <Text style={[s.hTxt, s.mt25]}>{val.name}</Text>
+        return (
+            denio[0].map((val, i) => {
+                return (
+                    <View key={i}>
+                        <Text style={[s.hTxt, s.mt25]}>{val.name}</Text>
                         <View style={[s.dflex, s.checkboxi]} >
                             {
-                                val.data.map((val2,io)=>{
-                                    return(
+                                val.data.map((val2, io) => {
+                                    return (
                                         <CheckBox
-                                        key={io}
+                                            key={io}
                                             title={val2.name}
                                             iconType='fontawesome'
                                             checkedIcon='circle'
@@ -385,7 +375,7 @@ const Filters = ({ navigation, from }) => {
                                             checkedColor='#B48618'
                                             uncheckedColor='lightgrey'
                                             checked={val2.selected ? true : false}
-                                            onPress={() => changeDen(val,i,val2,io)}
+                                            onPress={() => changeDen(val, i, val2, io)}
                                             textStyle={s.radioChk}
                                             containerStyle={s.radioCOnt}
                                         />
@@ -393,7 +383,7 @@ const Filters = ({ navigation, from }) => {
                                 })
                             }
                         </View>
-                </View>
+                    </View>
                 )
             })
         )
@@ -491,7 +481,7 @@ const Filters = ({ navigation, from }) => {
 
                 <View>
                     <SearchBar
-                        placeholder="Address, City, Zip or Neighborhood"
+                        placeholder="Address, City, Zip, Neighborhood, county or MLS"
                         containerStyle={s.searchContainer}
                         inputContainerStyle={s.sinpContainer}
                         inputStyle={s.sinp}
@@ -505,7 +495,7 @@ const Filters = ({ navigation, from }) => {
                     <View>
                         <Text style={[s.hTxt, s.mt25]}>Price</Text>
                         <View style={s.dflex}>
-                            <View style={{ justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+                            {/* <View style={{ justifyContent: 'center', alignItems: 'center', width: '100%' }}>
                                 <MultiSlider
                                     values={[
                                         nonCollidingMultiSliderValue[0],
@@ -548,15 +538,34 @@ const Filters = ({ navigation, from }) => {
                                     <Text style={s.text}>{nonCollidingMultiSliderValue[0]} </Text>
                                     <Text style={s.text}>{nonCollidingMultiSliderValue[1]}</Text>
                                 </View>
-                            </View>
-                            {/* <View style={s.mInp}>
-                                <Input
+                            </View> */}
+                            <View style={s.mInp}>
+                                {/* <Input
                                     placeholder='Min $'
                                     inputStyle={s.inpStyle}
                                     inputContainerStyle={s.inpConStyle}
                                     containerStyle={s.conStyle}
                                     secureTextEntry={true}
-                                />
+                                /> */}
+                                <View style={s.picker}>
+                                    <RNPickerSelect
+                                        onValueChange={(value) => console.log(value)}
+                                        items={[
+                                            { label: 'Min', value: 'min' },
+                                            { label: 'Less than 3 days', value: 'Less than 3 days' },
+                                            { label: 'Less than 7 days', value: 'Less than 7 days' },
+                                            { label: 'Less than 14 days', value: 'Less than 14 days' },
+                                            { label: 'Less than 30 days', value: 'Less than 30 days' },
+                                            { label: 'More than 7 days', value: 'More than 7 days' },
+                                            { label: 'More than 14 days', value: 'More than 14 days' },
+                                            { label: 'More than 30 days', value: 'More than 30 days' },
+                                            { label: 'More than 45 days', value: 'More than 45 days' },
+                                            { label: 'More than 60 days', value: 'More than 60 days' },
+                                            { label: 'More than 90 days', value: 'More than 90 days' },
+                                            { label: 'More than 180 days', value: 'More than 180 days' }
+                                        ]}
+                                    />
+                                </View>
                             </View>
                             <View style={s.mInp}>
                                 <Input
@@ -566,7 +575,7 @@ const Filters = ({ navigation, from }) => {
                                     containerStyle={s.conStyle}
                                     secureTextEntry={true}
                                 />
-                            </View> */}
+                            </View>
                         </View>
                     </View>
                 </View>

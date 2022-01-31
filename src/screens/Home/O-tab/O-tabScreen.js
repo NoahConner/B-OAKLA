@@ -8,7 +8,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import s from './O-tabStyle'
 import LinearGradient from 'react-native-linear-gradient';
 import { Image, Button } from 'react-native-elements';
-
+import Tips from '../../Tips/TipsScreen'
+import Guide from '../../Guide/Guide';
 import Filters from '../../../components/Filters/Filters'
 import AppContext from '../../../components/Appcontext/contextApi';
 import { BottomNavigation } from 'react-native-paper';
@@ -57,9 +58,7 @@ function* range(start, end) {
     }
 }
 export default class OTAB extends React.Component {
-
-
-
+    
     constructor() {
         super()
 
@@ -373,7 +372,7 @@ export default class OTAB extends React.Component {
                         <View>
                             <AppLogo width={moderateScale(110)} height={moderateScale(60)} />
                         </View>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.context.settipsS(true)}>
                             <Icon name="information-circle-outline" size={moderateScale(25)} color="#666" />
                         </TouchableOpacity>
                     </View>
@@ -436,8 +435,12 @@ export default class OTAB extends React.Component {
                     </View>
 
                 </View>
-
-
+                        <View>
+                            <Tips/>
+                        </View>
+                        <View>
+                            <Guide/>
+                        </View>
                 <View style={s.centeredView}>
                     <Modal
                         animationType="slide"

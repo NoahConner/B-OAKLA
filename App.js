@@ -14,21 +14,25 @@ import VerifyEmail from './src/screens/Verify-Email/VerifyEmail';
 import TermsPage from './src/screens/Terms-of-Use/Term';
 import PrivacyPage from './src/screens/Privacy/Privacy';
 import HomeInner from './src/screens/HomeInner/HomeInner';
-
 import Home from './src/screens/Home/HomeScreen'
-
 import RNBootSplash from "react-native-bootsplash";
 
 
-const App = (navigation) => {
+const App = ({navigation}) => {
 
   const [userToken, setuserToken] = useState('null');
   const [FilterShow, setFilterShow] = useState(true);
+  const [tipsS, settipsS] = useState(false);
+  const [guideR, setguideR] = useState(true);
   const userSettings = {
     userToken: userToken,
     FilterShow: FilterShow,
+    tipsS: tipsS,
+    guideR: guideR,
     setuserToken,
-    setFilterShow
+    setFilterShow,
+    settipsS,
+    setguideR
   }
 
   useEffect(() => {
@@ -38,7 +42,7 @@ const App = (navigation) => {
 }, []);
 
   return (
-    <AppContext.Provider value={userSettings}>
+    <AppContext.Provider value={userSettings} >
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           {

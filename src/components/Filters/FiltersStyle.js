@@ -49,12 +49,14 @@ export default StyleSheet.create({
         backgroundColor:'#f1f1f1',
     },
     sinp:{
-        fontSize:14,
+        fontSize:13,
         fontFamily:'Poppins-Medium',
-        lineHeight:moderateScale(20)
+        lineHeight:moderateScale(20),
+        paddingTop:moderateScale(13),
+        marginLeft:moderateScale(0)
     },
     leftSIcon:{
-        marginLeft:moderateScale(20)
+        marginLeft:moderateScale(10,0.1)
     },
     mt25:{
         marginTop:moderateScale(25)
