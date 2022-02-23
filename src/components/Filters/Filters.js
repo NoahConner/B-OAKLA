@@ -77,7 +77,7 @@ var filtersdata = [
         ]
     },
     {
-        'property-type': [
+        'property-type-buy': [
             {
                 'name': 'Single Family Home',
                 'selected': false
@@ -95,7 +95,7 @@ var filtersdata = [
                 'selected': false
             },
             {
-                'name': 'Farm/Ranches',
+                'name': 'Farm/Ranch',
                 'selected': false
             },
             {
@@ -152,12 +152,36 @@ var filtersdata = [
             },
         ]
     },
+    {
+        'property-type-rent': [
+            {
+                'name': 'Single-Family',
+                'selected': false
+            },
+            {
+                'name': 'Apartment / Condo / Co-op',
+                'selected': false
+            },
+            {
+                'name': 'Duplex',
+                'selected': false
+            },
+            {
+                'name': 'Townhome',
+                'selected': false
+            },
+        ]
+    },
 ]
 
 var deni = [
     {
-        'name': 'Office/Den',
+        'name': 'The Amenities',
         'data': [
+            {
+                'name': 'Office/Den',
+                'selected': false
+            },
             {
                 'name': 'Dining Room',
                 'selected': false
@@ -180,6 +204,96 @@ var deni = [
             }
         ]
     },
+    {
+        'name': 'The Amenities',
+        'data': [
+            {
+                'name': 'Wheelchair Accessible',
+                'selected': false
+            },
+            {
+                'name': 'A/C',
+                'selected': false
+            },
+            {
+                'name': 'Dishwasher',
+                'selected': false
+            },
+            {
+                'name': 'In Unit Laundry',
+                'selected': false
+            },
+            {
+                'name': 'W/D Hookups',
+                'selected': false
+            },
+            {
+                'name': 'Walk-In Closets',
+                'selected': false
+            },
+            {
+                'name': 'Laundry Facilities',
+                'selected': false
+            },
+            {
+                'name': 'Fitness Center',
+                'selected': false
+            },
+            {
+                'name': 'Business Center',
+                'selected': false
+            },
+            {
+                'name': 'Pool/Spa',
+                'selected': false
+            },
+            {
+                'name': 'Gated',
+                'selected': false
+            },
+            {
+                'name': 'Garage',
+                'selected': false
+            },
+            {
+                'name': 'Fireplace',
+                'selected': false
+            },
+            {
+                'name': 'Elevator',
+                'selected': false
+            },
+            {
+                'name': 'Parking',
+                'selected': false
+            },
+            {
+                'name': 'Furnished',
+                'selected': false
+            },
+            {
+                'name': 'Basement',
+                'selected': false
+            },
+            {
+                'name': 'Utilities Included',
+                'selected': false
+            },
+            {
+                'name': 'Patio/Balcony',
+                'selected': false
+            },
+            {
+                'name': 'Yard',
+                'selected': false
+            },
+            {
+                'name': 'Playground',
+                'selected': false
+            },
+        ]
+    },
+
     {
         'name': 'The Lot',
         'data': [
@@ -208,7 +322,7 @@ var deni = [
                 'selected': false
             },
             {
-                'name': 'Out Buildings',
+                'name': 'Outbuildings',
                 'selected': false
             }
         ]
@@ -360,7 +474,7 @@ const Filters = ({ navigation, from }) => {
         return (
             denio[0].map((val, i) => {
                 return (
-                    <View key={i}>
+                    <View key={i} style={{display: i == 1 && tripType == 0 ? 'none' : i == 0 && tripType == 1 ? 'none' : 'flex'}}>
                         <Text style={[s.hTxt, s.mt25]}>{val.name}</Text>
                         <View style={[s.dflex, s.checkboxi]} >
                             {
@@ -383,6 +497,7 @@ const Filters = ({ navigation, from }) => {
                                 })
                             }
                         </View>
+
                     </View>
                 )
             })
@@ -439,6 +554,7 @@ const Filters = ({ navigation, from }) => {
 
 
     const dataTer = (p, t) => {
+        console.log(p, t)
         return (
             arrData[p][t].map((val2, i) => {
                 return (
@@ -481,7 +597,7 @@ const Filters = ({ navigation, from }) => {
 
                 <View>
                     <SearchBar
-                        placeholder="Address, City, Zip, Neighborhood, county or MLS"
+                        placeholder={tripType == 0 ? 'Address, City, Zip, Neighborhood, county or MLS' : 'Address, City, Zip, Neighborhood, county or MLS'}
                         containerStyle={s.searchContainer}
                         inputContainerStyle={s.sinpContainer}
                         inputStyle={s.sinp}
@@ -552,29 +668,36 @@ const Filters = ({ navigation, from }) => {
                                         onValueChange={(value) => console.log(value)}
                                         items={[
                                             { label: 'Min', value: 'min' },
-                                            { label: 'Less than 3 days', value: 'Less than 3 days' },
-                                            { label: 'Less than 7 days', value: 'Less than 7 days' },
-                                            { label: 'Less than 14 days', value: 'Less than 14 days' },
-                                            { label: 'Less than 30 days', value: 'Less than 30 days' },
-                                            { label: 'More than 7 days', value: 'More than 7 days' },
-                                            { label: 'More than 14 days', value: 'More than 14 days' },
-                                            { label: 'More than 30 days', value: 'More than 30 days' },
-                                            { label: 'More than 45 days', value: 'More than 45 days' },
-                                            { label: 'More than 60 days', value: 'More than 60 days' },
-                                            { label: 'More than 90 days', value: 'More than 90 days' },
-                                            { label: 'More than 180 days', value: 'More than 180 days' }
+                                            { label: '$30,000', value: '$30,000' },
+                                            { label: '$35,000', value: '$35,000' },
+                                            { label: '$40,000', value: '$40,000' },
+                                            { label: '$45,000', value: '$45,000' },
+                                            { label: '$50,000', value: '$50,000' },
                                         ]}
                                     />
                                 </View>
                             </View>
                             <View style={s.mInp}>
-                                <Input
+                                {/* <Input
                                     placeholder='Max $'
                                     inputStyle={s.inpStyle}
                                     inputContainerStyle={s.inpConStyle}
                                     containerStyle={s.conStyle}
                                     secureTextEntry={true}
-                                />
+                                /> */}
+                                <View style={s.picker}>
+                                    <RNPickerSelect
+                                        onValueChange={(value) => console.log(value)}
+                                        items={[
+                                            { label: 'Max', value: 'max' },
+                                            { label: '$300,000', value: '$300,000' },
+                                            { label: '$350,000', value: '$350,000' },
+                                            { label: '$400,000', value: '$400,000' },
+                                            { label: '$450,000', value: '$450,000' },
+                                            { label: '$500,000', value: '$500,000' },
+                                        ]}
+                                    />
+                                </View>
                             </View>
                         </View>
                     </View>
@@ -607,11 +730,71 @@ const Filters = ({ navigation, from }) => {
                         <Text style={[s.hTxt, s.mt25]}>Property Type</Text>
                         <View style={[s.dflex, s.chipset]}>
                             {
-                                dataTer(2, 'property-type')
+                                tripType == 0 ? (
+                                    dataTer(2, 'property-type-buy')
+                                ) : (
+                                    dataTer(6, 'property-type-rent')
+                                )
                             }
                         </View>
                     </View>
                 </View>
+
+                {
+                    tripType == 1 ? (
+                        <>
+                            <View>
+                                <View>
+                                    <Text style={[s.hTxt, s.mt25]}>Pets</Text>
+                                    <View style={s.picker}>
+                                        <RNPickerSelect
+                                            onValueChange={(value) => console.log(value)}
+                                            items={[
+                                                { label: 'None', value: 'none' },
+                                                // { label: 'New listings', value: 'New listings' },
+                                                { label: 'Cats', value: 'Cats' },
+                                                { label: 'Small Dogs', value: 'Small Dogs' },
+                                                { label: 'Large Dogs', value: 'Large Dogs' },
+                                            ]}
+                                        />
+                                    </View>
+                                </View>
+                            </View>
+
+                            <View>
+                                <View>
+                                    <Text style={[s.hTxt, s.mt25]}>Rental Type</Text>
+                                    <View style={s.picker}>
+                                        <RNPickerSelect
+                                            onValueChange={(value) => console.log(value)}
+                                            items={[
+                                                { label: 'None', value: 'none' },
+                                                // { label: 'New listings', value: 'New listings' },
+                                                { label: 'Short Term', value: 'Short Term' },
+                                                { label: 'Student', value: 'Student' },
+                                                { label: 'Senior Housing', value: 'Senior Housing' },
+                                            ]}
+                                        />
+                                    </View>
+                                </View>
+                            </View>
+                            <View>
+                                <View>
+                                    <Text style={[s.hTxt, s.mt25]}>Rental Status</Text>
+                                    <View style={s.picker}>
+                                        <RNPickerSelect
+                                            onValueChange={(value) => console.log(value)}
+                                            items={[
+                                                { label: 'New', value: 'New' },
+                                                { label: 'Active', value: 'Active' },
+                                            ]}
+                                        />
+                                    </View>
+                                </View>
+                            </View>
+                        </>
+                    ) : null
+                }
 
                 <View style={s.divider}></View>
 
@@ -663,6 +846,27 @@ const Filters = ({ navigation, from }) => {
                                     containerStyle={s.radioCOnt}
                                 />
                             </View>
+
+                            {
+                                tripType == 0 ? (
+                                    <>
+                                        <View>
+                                            <CheckBox
+                                                title='Lease to Purchase'
+                                                iconType='fontawesome'
+                                                checkedIcon='circle'
+                                                uncheckedIcon='circle'
+                                                checkedColor='#B48618'
+                                                uncheckedColor='lightgrey'
+                                                checked={ForSale == 'lease-to-purchase' ? true : false}
+                                                onPress={() => ForSale == 'lease-to-purchase' ? setForSale(null) : setForSale('lease-to-purchase')}
+                                                textStyle={s.radioChk}
+                                                containerStyle={s.radioCOnt}
+                                            />
+                                        </View>
+                                    </>
+                                ) : null
+                            }
                         </View>
                     </View>
                 </View>
@@ -671,19 +875,7 @@ const Filters = ({ navigation, from }) => {
                     <View>
                         <Text style={[s.hTxt, s.mt25]}>Listing Status</Text>
                         <View>
-                            {/* <RNPickerSelect
-                                onValueChange={(value) => console.log(value)}
-                                items={[
-                                    // { label: 'Active + coming soon listings', value: 'Active + coming soon listings' },
-                                    // { label: 'Coming soon listings', value: 'Coming soon listings' },
-                                    // { label: 'Active listings', value: 'Active listings' },
-                                    // { label: 'Active + under contract/pending', value: 'Active + under contract/pending' },
-                                    // { label: 'Only under contract/pending', value: 'Only under contract/pending' },
-                                    { label: 'New', value: 'New' },
-                                    { label: 'Active', value: 'Active' },
-                                    { label: 'Pending/Contingent ', value: 'Pending/Contingent ' }
-                                ]}
-                            /> */}
+
                         </View>
 
                     </View>
@@ -764,22 +956,28 @@ const Filters = ({ navigation, from }) => {
                 </View>
 
 
-                <View style={[s.dflex, s.mt30]}>
-                    <TouchableOpacity onPress={() => togglearrData('OpenHouses')}>
-                        <Text style={s.mustHave}>Open Houses</Text>
-                    </TouchableOpacity>
-                    <View >
-                        <ToggleSwitch
-                            isOn={OpenHouses}
-                            trackOnStyle={{ backgroundColor: '#E5D8B7' }}
-                            trackOffStyle={{ backgroundColor: '#f1f1f1' }}
-                            thumbOnStyle={{ backgroundColor: '#B48618' }}
-                            thumbOffStyle={{ backgroundColor: '#C4C4C4' }}
-                            size="medium"
-                            onToggle={() => togglearrData('OpenHouses')}
-                        />
-                    </View>
-                </View>
+                {
+                    tripType == 0 ? (
+                        <>
+                            <View style={[s.dflex, s.mt30]}>
+                                <TouchableOpacity onPress={() => togglearrData('OpenHouses')}>
+                                    <Text style={s.mustHave}>Open Houses</Text>
+                                </TouchableOpacity>
+                                <View >
+                                    <ToggleSwitch
+                                        isOn={OpenHouses}
+                                        trackOnStyle={{ backgroundColor: '#E5D8B7' }}
+                                        trackOffStyle={{ backgroundColor: '#f1f1f1' }}
+                                        thumbOnStyle={{ backgroundColor: '#B48618' }}
+                                        thumbOffStyle={{ backgroundColor: '#C4C4C4' }}
+                                        size="medium"
+                                        onToggle={() => togglearrData('OpenHouses')}
+                                    />
+                                </View>
+                            </View>
+                        </>
+                    ) : null
+                }
                 <View style={[s.dflex, s.mt30]}>
                     <TouchableOpacity onPress={() => togglearrData('DWalkthroughVideoTour')}>
                         <Text style={s.mustHave}>3D Walkthrough & Video Tour</Text>
@@ -829,26 +1027,32 @@ const Filters = ({ navigation, from }) => {
                     </View>
                 </View> */}
 
-                <View>
-                    <View>
-                        <Text style={[s.hTxt, s.mt25]}>Price Reduced</Text>
-                        <View style={s.picker}>
-                            <RNPickerSelect
-                                onValueChange={(value) => console.log(value)}
-                                items={[
-                                    { label: 'No max', value: 'No max' },
-                                    // { label: 'New listings', value: 'New listings' },
-                                    { label: 'In the last day', value: 'In the last day' },
-                                    { label: '3 days', value: '3 days' },
-                                    { label: '7 days', value: '7 days' },
-                                    { label: '14 days', value: '14 days' },
-                                    { label: '21 days', value: '21 days' },
-                                    { label: '30 days', value: '30 days' },
-                                ]}
-                            />
-                        </View>
-                    </View>
-                </View>
+                {
+                    tripType == 0 ? (
+                        <>
+                            <View>
+                                <View>
+                                    <Text style={[s.hTxt, s.mt25]}>Price Reduced</Text>
+                                    <View style={s.picker}>
+                                        <RNPickerSelect
+                                            onValueChange={(value) => console.log(value)}
+                                            items={[
+                                                { label: 'No max', value: 'No max' },
+                                                // { label: 'New listings', value: 'New listings' },
+                                                { label: 'In the last day', value: 'In the last day' },
+                                                { label: '3 days', value: '3 days' },
+                                                { label: '7 days', value: '7 days' },
+                                                { label: '14 days', value: '14 days' },
+                                                { label: '21 days', value: '21 days' },
+                                                { label: '30 days', value: '30 days' },
+                                            ]}
+                                        />
+                                    </View>
+                                </View>
+                            </View>
+                        </>
+                    ) : null
+                }
 
                 <View style={[s.divider, s.mt30]}></View>
 
@@ -960,7 +1164,7 @@ const Filters = ({ navigation, from }) => {
                     <View>
                         <Text style={[s.hTxt, s.mt25]}>Home Size</Text>
                         <View style={s.dflex}>
-                            <View style={{ justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+                            {/* <View style={{ justifyContent: 'center', alignItems: 'center', width: '100%' }}>
                                 <MultiSlider
                                     values={[
                                         homeSize[0],
@@ -1003,6 +1207,38 @@ const Filters = ({ navigation, from }) => {
                                     <Text style={s.text}>{homeSize[0]} sqft</Text>
                                     <Text style={s.text}>{homeSize[1]} sqft</Text>
                                 </View>
+                            </View> */}
+                            <View style={s.mInp}>
+
+                                <View style={s.picker}>
+                                    <RNPickerSelect
+                                        onValueChange={(value) => console.log(value)}
+                                        items={[
+                                            { label: 'Min', value: 'min' },
+                                            { label: '500 sqft', value: '500 sqft' },
+                                            { label: '1000 sqft', value: '1000 sqft' },
+                                            { label: '1500 sqft', value: '1500 sqft' },
+                                            { label: '2000 sqft', value: '2000 sqft' },
+                                            { label: '2500 sqft', value: '2500 sqft' },
+                                        ]}
+                                    />
+                                </View>
+                            </View>
+                            <View style={s.mInp}>
+
+                                <View style={s.picker}>
+                                    <RNPickerSelect
+                                        onValueChange={(value) => console.log(value)}
+                                        items={[
+                                            { label: 'Max', value: 'max' },
+                                            { label: '3000 sqft', value: '3000 sqft' },
+                                            { label: '3500 sqft', value: '3500 sqft' },
+                                            { label: '4000 sqft', value: '4000 sqft' },
+                                            { label: '4500 sqft', value: '4500 sqft' },
+                                            { label: '5000 sqft', value: '5000 sqft' },
+                                        ]}
+                                    />
+                                </View>
                             </View>
                         </View>
                     </View>
@@ -1012,7 +1248,7 @@ const Filters = ({ navigation, from }) => {
                     <View>
                         <Text style={[s.hTxt, s.mt25]}>Lot Size</Text>
                         <View style={s.dflex}>
-                            <View style={{ justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+                            {/* <View style={{ justifyContent: 'center', alignItems: 'center', width: '100%' }}>
                                 <MultiSlider
                                     values={[
                                         lotSize[0],
@@ -1054,6 +1290,39 @@ const Filters = ({ navigation, from }) => {
                                 <View style={s.sliderOne}>
                                     <Text style={s.text}>{lotSize[0]} {acres}</Text>
                                     <Text style={s.text}>{lotSize[1]} {acres2}</Text>
+                                </View>
+                                
+                            </View> */}
+                            <View style={s.mInp}>
+
+                                <View style={s.picker}>
+                                    <RNPickerSelect
+                                        onValueChange={(value) => console.log(value)}
+                                        items={[
+                                            { label: 'Min', value: 'min' },
+                                            { label: '500 sqft', value: '500 sqft' },
+                                            { label: '1000 sqft', value: '1000 sqft' },
+                                            { label: '1500 sqft', value: '1500 sqft' },
+                                            { label: '2000 sqft', value: '2000 sqft' },
+                                            { label: '2500 sqft', value: '2500 sqft' },
+                                        ]}
+                                    />
+                                </View>
+                            </View>
+                            <View style={s.mInp}>
+
+                                <View style={s.picker}>
+                                    <RNPickerSelect
+                                        onValueChange={(value) => console.log(value)}
+                                        items={[
+                                            { label: 'Max', value: 'max' },
+                                            { label: '3000 sqft', value: '3000 sqft' },
+                                            { label: '3500 sqft', value: '3500 sqft' },
+                                            { label: '4000 sqft', value: '4000 sqft' },
+                                            { label: '4500 sqft', value: '4500 sqft' },
+                                            { label: '5000 sqft', value: '5000 sqft' },
+                                        ]}
+                                    />
                                 </View>
                             </View>
                         </View>

@@ -49,7 +49,7 @@ export default StyleSheet.create({
         backgroundColor:'#f1f1f1',
     },
     sinp:{
-        fontSize:13,
+        fontSize:12,
         fontFamily:'Poppins-Medium',
         lineHeight:moderateScale(20),
         paddingTop:moderateScale(13),
